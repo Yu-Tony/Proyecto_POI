@@ -1,0 +1,4 @@
+C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\ProjectPOI\obj\Debug\ProjectPOI.csprojAssemblyReference.cache
+C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\ProjectPOI\obj\Debug\ProjectPOI.Form1.resources
+C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\ProjectPOI\obj\Debug\ProjectPOI.Properties.Resources.resources
+C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\ProjectPOI\obj\Debug\ProjectPOI.csproj.GenerateResource.cache

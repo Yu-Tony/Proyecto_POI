@@ -1,0 +1,10 @@
+C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\UsersInformation\bin\Debug\UsersInformation.dll
+C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\UsersInformation\bin\Debug\UsersInformation.pdb
+C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\UsersInformation\bin\Debug\Data.dll
+C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\UsersInformation\bin\Debug\Users.dll
+C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\UsersInformation\bin\Debug\Data.pdb
+C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\UsersInformation\bin\Debug\Users.pdb
+C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\UsersInformation\obj\Debug\UsersInformation.csprojAssemblyReference.cache
+C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\UsersInformation\obj\Debug\UsersInformation.csproj.CopyComplete
+C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\UsersInformation\obj\Debug\UsersInformation.dll
+C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\UsersInformation\obj\Debug\UsersInformation.pdb
