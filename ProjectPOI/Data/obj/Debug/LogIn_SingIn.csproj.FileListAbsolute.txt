@@ -6,3 +6,11 @@ C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\Data\obj\Debug\LogIn_SingIn.c
 C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\Data\obj\Debug\LogIn_SingIn.csproj.CopyComplete
 C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\Data\obj\Debug\Data.dll
 C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\Data\obj\Debug\Data.pdb
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\Data\bin\Debug\Data.dll
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\Data\bin\Debug\Data.pdb
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\Data\bin\Debug\Users.dll
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\Data\bin\Debug\Users.pdb
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\Data\obj\Debug\LogIn_SingIn.csprojAssemblyReference.cache
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\Data\obj\Debug\LogIn_SingIn.csproj.CopyComplete
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\Data\obj\Debug\Data.dll
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\Data\obj\Debug\Data.pdb

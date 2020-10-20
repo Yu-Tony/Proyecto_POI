@@ -29,6 +29,20 @@ namespace LogIn_SingIn
 
         }
 
+        public DataTable UserSignin(UsersLibrary obj)
+        {
+            SqlCommand cmd = new SqlCommand("Signin_User", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@user", obj.user);
+            cmd.Parameters.AddWithValue("@pass", obj.pass);
+            cmd.Parameters.AddWithValue("@email", obj.mail);
+            SqlDataAdapter dataAd = new SqlDataAdapter(cmd);
+            DataTable dataTa = new DataTable();
+            dataAd.Fill(dataTa);
+            return dataTa;
+
+        }
+
 
     }
 }

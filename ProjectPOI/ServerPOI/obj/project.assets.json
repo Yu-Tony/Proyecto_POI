@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nahomi Soto\\source\\repos\\7 POI\\ProjectPOI\\ServerPOI\\ServerPOI.csproj",
+      "projectUniqueName": "C:\\Users\\Nahomi Soto\\source\\repos\\7 POI\\Proyecto_POI\\ProjectPOI\\ServerPOI\\ServerPOI.csproj",
       "projectName": "ServerPOI",
-      "projectPath": "C:\\Users\\Nahomi Soto\\source\\repos\\7 POI\\ProjectPOI\\ServerPOI\\ServerPOI.csproj",
+      "projectPath": "C:\\Users\\Nahomi Soto\\source\\repos\\7 POI\\Proyecto_POI\\ProjectPOI\\ServerPOI\\ServerPOI.csproj",
       "packagesPath": "C:\\Users\\Nahomi Soto\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Nahomi Soto\\source\\repos\\7 POI\\ProjectPOI\\ServerPOI\\obj\\",
+      "outputPath": "C:\\Users\\Nahomi Soto\\source\\repos\\7 POI\\Proyecto_POI\\ProjectPOI\\ServerPOI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Nahomi Soto\\AppData\\Roaming\\NuGet\\NuGet.Config",

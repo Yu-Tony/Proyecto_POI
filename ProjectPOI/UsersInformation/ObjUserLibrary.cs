@@ -22,5 +22,10 @@ namespace UsersInformation
         {
             return objU.UserLogin(_objU);
         }
+
+        public DataTable _UsersNew(UsersLibrary _objU)
+        {
+            return objU.UserSignin(_objU);
+        }
     }
 }

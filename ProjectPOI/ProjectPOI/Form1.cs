@@ -97,19 +97,31 @@ namespace ProjectPOI
         private void Connect_LogIn_Click(object sender, EventArgs e)
         {
             LogIn();
-        
 
+        }
+
+        private void SignIn_Button_Click_1(object sender, EventArgs e)
+        {
+            SignIn();
         }
 
         private void Sing_In_Chng_Click(object sender, EventArgs e)
         {
 
             Transition trans = new Transition(new TransitionType_EaseInEaseOut(800));
-            trans.add(label1, "Top", 1000);
-            trans.add(User_LogIn, "Top", 1000);
-            trans.add(label2, "Top", 1000);
-            trans.add(Password_Login, "Top", 1000);
-            trans.add(Connect_LogIn, "Top", 1000);
+            trans.add(label1, "Top", 100);
+            trans.add(User_LogIn, "Top", 130);
+
+            trans.add(label2, "Top", 180);
+            trans.add(Password_Login, "Top", 210);
+
+            trans.add(Connect_LogIn, "Left", -1000);
+            trans.add(SignIn_Button, "Left", 200);
+
+            trans.add(label3, "Top", 260);
+            trans.add(Mail_LogIn, "Top", 290);
+
+            trans.run();
             Sing_In_Chng.Visible = false;
             Log_In_Chng.Visible = true;
 
@@ -118,11 +130,21 @@ namespace ProjectPOI
         private void Log_In_Chng_Click(object sender, EventArgs e)
         {
             Transition trans = new Transition(new TransitionType_EaseInEaseOut(800));
-            trans.add(label1, "Top", 145);
+
+            trans.add(label1, "Top", 130);
             trans.add(User_LogIn, "Top", 170);
-            trans.add(label2, "Top", 211);
-            trans.add(Password_Login, "Top", 237);
-            trans.add(Connect_LogIn, "Top", 298);
+
+            trans.add(label2, "Top", 220);
+            trans.add(Password_Login, "Top", 260);
+
+            trans.add(Connect_LogIn, "Left", 200);
+            trans.add(SignIn_Button, "Left", -1000);
+
+            trans.add(label3, "Top", -40);
+            trans.add(Mail_LogIn, "Top", -20);
+
+            trans.run();
+
             Sing_In_Chng.Visible = true;
             Log_In_Chng.Visible = false;
 
@@ -145,6 +167,9 @@ namespace ProjectPOI
             Send_Button.Location = new Point(-700, 523);
             File_Button.Location = new Point(-700, 523);
             Emoji_Button.Location = new Point(-700, 523);
+            label3.Location = new Point(80, -40);
+            Mail_LogIn.Location=new Point(80, -20);
+            SignIn_Button.Location = new Point(-80, 350);
         }
 
         void LogIn()
@@ -188,9 +213,55 @@ namespace ProjectPOI
             }
         }
 
+        void SignIn()
+        {
+            DataTable dataTa = new DataTable();
+            objUserU.user = User_LogIn.Text;
+            objUserU.pass = Password_Login.Text;
+            objUserU.mail = Mail_LogIn.Text;
+
+            dataTa = objUserI._Users(objUserU);
+
+
+            if (dataTa.Rows.Count > 0)
+            {
+       
+                MessageBox.Show("Usuario ya existente", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            else
+            {
+                objUserI._UsersNew(objUserU);
+                dataTa = objUserI._Users(objUserU);
+
+                MessageBox.Show("Bienvenido" + dataTa.Rows[0][0].ToString(), "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                nick = User_LogIn.Text;
+                _Connect();
+
+                Transition trans = new Transition(new TransitionType_EaseInEaseOut(800));
+                trans.add(label1, "Left", 1000);
+                trans.add(User_LogIn, "Left", 1000);
+                trans.add(label2, "Left", 1000);
+                trans.add(Password_Login, "Left", 1000);
+                trans.add(Connect_LogIn, "Left", 1000);
+                trans.add(panel1, "Left", 1000);
+                trans.add(panel2, "Left", 1000);
+
+                trans.add(listBoxMessages, "Left", 180);
+                trans.add(WriteMessage, "Left", 180);
+                trans.add(Send_Button, "Left", 610);
+                trans.add(File_Button, "Left", 675);
+                trans.add(Emoji_Button, "Left", 740);
+                trans.run();
+            }
+        }
+
         private void listBoxMessages_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
+
+   
     }
 }

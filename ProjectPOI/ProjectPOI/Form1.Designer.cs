@@ -40,8 +40,11 @@
             this.Sing_In_Chng = new System.Windows.Forms.Button();
             this.Log_In_Chng = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.listBoxMessages = new System.Windows.Forms.ListBox();
+            this.SignIn_Button = new System.Windows.Forms.Button();
+            this.Mail_LogIn = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.listBoxMessages = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,7 +123,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.GhostWhite;
-            this.label2.Location = new System.Drawing.Point(81, 211);
+            this.label2.Location = new System.Drawing.Point(80, 212);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 9;
@@ -152,6 +155,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel1.Controls.Add(this.SignIn_Button);
+            this.panel1.Controls.Add(this.Mail_LogIn);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.Log_In_Chng);
             this.panel1.Controls.Add(this.Sing_In_Chng);
             this.panel1.Location = new System.Drawing.Point(1, 0);
@@ -159,15 +166,32 @@
             this.panel1.Size = new System.Drawing.Size(500, 561);
             this.panel1.TabIndex = 10;
             // 
-            // listBoxMessages
+            // SignIn_Button
             // 
-            this.listBoxMessages.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.listBoxMessages.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBoxMessages.FormattingEnabled = true;
-            this.listBoxMessages.Location = new System.Drawing.Point(179, 19);
-            this.listBoxMessages.Name = "listBoxMessages";
-            this.listBoxMessages.Size = new System.Drawing.Size(627, 481);
-            this.listBoxMessages.TabIndex = 13;
+            this.SignIn_Button.Location = new System.Drawing.Point(206, 355);
+            this.SignIn_Button.Name = "SignIn_Button";
+            this.SignIn_Button.Size = new System.Drawing.Size(75, 23);
+            this.SignIn_Button.TabIndex = 16;
+            this.SignIn_Button.Text = "Registrarse";
+            this.SignIn_Button.UseVisualStyleBackColor = true;
+            this.SignIn_Button.Click += new System.EventHandler(this.SignIn_Button_Click_1);
+            // 
+            // Mail_LogIn
+            // 
+            this.Mail_LogIn.Location = new System.Drawing.Point(83, 310);
+            this.Mail_LogIn.Name = "Mail_LogIn";
+            this.Mail_LogIn.Size = new System.Drawing.Size(287, 20);
+            this.Mail_LogIn.TabIndex = 15;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.GhostWhite;
+            this.label3.Location = new System.Drawing.Point(80, 284);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Correo";
             // 
             // panel2
             // 
@@ -176,6 +200,16 @@
             this.panel2.Size = new System.Drawing.Size(488, 561);
             this.panel2.TabIndex = 14;
             // 
+            // listBoxMessages
+            // 
+            this.listBoxMessages.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.listBoxMessages.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBoxMessages.FormattingEnabled = true;
+            this.listBoxMessages.Location = new System.Drawing.Point(179, 40);
+            this.listBoxMessages.Name = "listBoxMessages";
+            this.listBoxMessages.Size = new System.Drawing.Size(627, 481);
+            this.listBoxMessages.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -183,7 +217,6 @@
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.listBoxMessages);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.Password_Login);
             this.Controls.Add(this.Connect_LogIn);
             this.Controls.Add(this.label1);
@@ -198,6 +231,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,8 +250,11 @@
         private System.Windows.Forms.Button Sing_In_Chng;
         private System.Windows.Forms.Button Log_In_Chng;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ListBox listBoxMessages;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox Mail_LogIn;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button SignIn_Button;
+        private System.Windows.Forms.ListBox listBoxMessages;
     }
 }
 

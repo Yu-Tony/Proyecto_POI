@@ -3,3 +3,8 @@ C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\Users\bin\Debug\Users.pdb
 C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\Users\obj\Debug\Users.csprojAssemblyReference.cache
 C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\Users\obj\Debug\Users.dll
 C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\Users\obj\Debug\Users.pdb
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\Users\bin\Debug\Users.dll
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\Users\bin\Debug\Users.pdb
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\Users\obj\Debug\Users.csprojAssemblyReference.cache
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\Users\obj\Debug\Users.dll
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\Users\obj\Debug\Users.pdb
