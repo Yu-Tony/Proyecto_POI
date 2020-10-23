@@ -43,6 +43,17 @@ namespace LogIn_SingIn
 
         }
 
+        public DataTable TraerContactos()
+        {
+            SqlCommand cmd = new SqlCommand("select UserName from Users", conn);
+            cmd.CommandType = CommandType.Text;
+            SqlDataAdapter dataAd = new SqlDataAdapter(cmd);
+            DataTable dataTa = new DataTable();
+            dataAd.Fill(dataTa);
+            return dataTa;
+
+        }
+
 
     }
 }

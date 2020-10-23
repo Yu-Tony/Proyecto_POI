@@ -36,6 +36,7 @@ namespace ProjectPOI
         //Para crear el objeto de usuario y revisarlo
         UsersLibrary objUserU = new UsersLibrary();
         ObjUserLibrary objUserI = new ObjUserLibrary();
+        ObjUserLibrary objUsersAll = new ObjUserLibrary();
 
         private void AddItem(string s)
         {
@@ -100,7 +101,7 @@ namespace ProjectPOI
 
         }
 
-        private void SignIn_Button_Click_1(object sender, EventArgs e)
+        private void SignIn_Button_Click(object sender, EventArgs e)
         {
             SignIn();
         }
@@ -116,7 +117,7 @@ namespace ProjectPOI
             trans.add(Password_Login, "Top", 210);
 
             trans.add(Connect_LogIn, "Left", -1000);
-            trans.add(SignIn_Button, "Left", 200);
+            trans.add(SignIn_Button, "Left", 245);
 
             trans.add(label3, "Top", 260);
             trans.add(Mail_LogIn, "Top", 290);
@@ -137,7 +138,7 @@ namespace ProjectPOI
             trans.add(label2, "Top", 220);
             trans.add(Password_Login, "Top", 260);
 
-            trans.add(Connect_LogIn, "Left", 200);
+            trans.add(Connect_LogIn, "Left", 245);
             trans.add(SignIn_Button, "Left", -1000);
 
             trans.add(label3, "Top", -40);
@@ -162,14 +163,18 @@ namespace ProjectPOI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            listBoxMessages.Location = new Point(-700, 12);
+            listBoxMessages.Location = new Point(-700, 68);
             WriteMessage.Location = new Point(-700, 523);
             Send_Button.Location = new Point(-700, 523);
             File_Button.Location = new Point(-700, 523);
             Emoji_Button.Location = new Point(-700, 523);
-            label3.Location = new Point(80, -40);
-            Mail_LogIn.Location=new Point(80, -20);
+            label3.Location = new Point(130, -40);
+            Mail_LogIn.Location=new Point(130, -20);
             SignIn_Button.Location = new Point(-80, 350);
+            panel3.Location = new Point(-300, 0);
+            panel4.Location = new Point(-1000, 0);
+            panel5.Location = new Point(-300, 0);
+            ContactList.Location = new Point(0, 70);
         }
 
         void LogIn()
@@ -194,24 +199,39 @@ namespace ProjectPOI
                 trans.add(label2, "Left", 1000);
                 trans.add(Password_Login, "Left", 1000);
                 trans.add(Connect_LogIn, "Left", 1000);
-                trans.add(panel1, "Left", 1000);
+                trans.add(panel1, "Left", 1200);
                 trans.add(panel2, "Left", 1000);
 
-                trans.add(listBoxMessages, "Left", 180);
-                trans.add(WriteMessage, "Left", 180);
-                trans.add(Send_Button, "Left", 610);
-                trans.add(File_Button, "Left", 675);
-                trans.add(Emoji_Button, "Left", 740);
+                trans.add(listBoxMessages, "Left", 25);
+                trans.add(WriteMessage, "Left", 25);
+                trans.add(Send_Button, "Left", 455);
+                trans.add(File_Button, "Left", 520);
+                trans.add(Emoji_Button, "Left", 585);
+                trans.add(panel3, "Left", 0);
+                trans.add(ContactList, "Left", 15);
+                trans.add(panel4, "Left", 250);
+                trans.add(panel5, "Left", 930);
+
                 trans.run();
 
-            }
+            DataTable Users = new DataTable();
+            Users = objUsersAll.AllUsers();
+
+            for (int i = 0; i < Users.Rows.Count; i++)
+            {
+                    if (Users.Rows[i][0].ToString() != objUserU.user)
+                    {
+                        ContactList.Items.Add(Users.Rows[i][0].ToString());
+                    }
+                }
+        }
 
             else
             {
                 MessageBox.Show("Usuario o contrasena incorrecta", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
-        }
+}
 
         void SignIn()
         {
@@ -248,20 +268,29 @@ namespace ProjectPOI
                 trans.add(panel1, "Left", 1000);
                 trans.add(panel2, "Left", 1000);
 
+
                 trans.add(listBoxMessages, "Left", 180);
                 trans.add(WriteMessage, "Left", 180);
                 trans.add(Send_Button, "Left", 610);
                 trans.add(File_Button, "Left", 675);
                 trans.add(Emoji_Button, "Left", 740);
+                trans.add(panel3, "Left", 0);
+                trans.add(ContactList, "Left", 0);
+                // trans.add(panel4, "Left", 300);
                 trans.run();
             }
         }
 
-        private void listBoxMessages_SelectedIndexChanged(object sender, EventArgs e)
+        private void File_Button_Click(object sender, EventArgs e)
         {
 
         }
 
-   
+        private void Emoji_Button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

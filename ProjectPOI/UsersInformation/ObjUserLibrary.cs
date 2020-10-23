@@ -27,5 +27,12 @@ namespace UsersInformation
         {
             return objU.UserSignin(_objU);
         }
+
+        public DataTable AllUsers()
+        {
+            return objU.TraerContactos();
+        }
+
+
     }
 }
