@@ -18,6 +18,7 @@ namespace UsersInformation
     public class ObjUserLibrary
     {
         DataLibrary objU = new DataLibrary();
+
         public DataTable _Users(UsersLibrary _objU)
         {
             return objU.UserLogin(_objU);
@@ -31,6 +32,16 @@ namespace UsersInformation
         public DataTable AllUsers()
         {
             return objU.TraerContactos();
+        }
+
+        public DataTable ChangeUser(UsersLibrary _objU, UsersLibrary _objUU)
+        {
+            return objU.CnhgUser(_objU, _objUU);
+        }
+
+        public DataTable DeleteUser(UsersLibrary _objU)
+        {
+            return objU.DelUser(_objU);
         }
 
 

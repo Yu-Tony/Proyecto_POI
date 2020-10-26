@@ -45,8 +45,37 @@ namespace LogIn_SingIn
 
         public DataTable TraerContactos()
         {
-            SqlCommand cmd = new SqlCommand("select UserName from Users", conn);
+            SqlCommand cmd = new SqlCommand("select * from Users", conn);
             cmd.CommandType = CommandType.Text;
+            SqlDataAdapter dataAd = new SqlDataAdapter(cmd);
+            DataTable dataTa = new DataTable();
+            dataAd.Fill(dataTa);
+            return dataTa;
+
+        }
+
+        public DataTable CnhgUser(UsersLibrary objActual, UsersLibrary objNew)
+        {
+
+            SqlCommand cmd = new SqlCommand("Edit_User", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ActualUser", objActual.user);
+            cmd.Parameters.AddWithValue("@NewUser", objNew.user);
+            cmd.Parameters.AddWithValue("@email", objNew.mail);
+            cmd.Parameters.AddWithValue("@pass", objNew.pass);
+            SqlDataAdapter dataAd = new SqlDataAdapter(cmd);
+            DataTable dataTa = new DataTable();
+            dataAd.Fill(dataTa);
+            return dataTa;
+
+        }
+
+        public DataTable DelUser(UsersLibrary obj)
+        {
+
+            SqlCommand cmd = new SqlCommand("Delete_User", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@user", obj.user);
             SqlDataAdapter dataAd = new SqlDataAdapter(cmd);
             DataTable dataTa = new DataTable();
             dataAd.Fill(dataTa);

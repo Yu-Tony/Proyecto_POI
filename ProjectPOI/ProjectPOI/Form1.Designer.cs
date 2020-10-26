@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.Sing_In_Chng = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Mail_LogIn = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.Log_In_Chng = new System.Windows.Forms.Button();
             this.SignIn_Button = new System.Windows.Forms.Button();
-            this.Mail_LogIn = new System.Windows.Forms.TextBox();
+            this.Password2_Login = new System.Windows.Forms.TextBox();
             this.Password_Login = new System.Windows.Forms.TextBox();
             this.Connect_LogIn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,7 +44,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.User_LogIn = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.Send_Button = new System.Windows.Forms.Button();
             this.listBoxMessages = new System.Windows.Forms.ListBox();
@@ -48,10 +51,32 @@
             this.File_Button = new System.Windows.Forms.Button();
             this.WriteMessage = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.RefreshContacts = new System.Windows.Forms.Button();
+            this.SearchContact = new System.Windows.Forms.TextBox();
             this.ContactList = new System.Windows.Forms.ListBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.UserDisplay = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.MailDisplay = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.EditInfo_Button = new System.Windows.Forms.Button();
+            this.SaveInfo_Button = new System.Windows.Forms.Button();
+            this.DeleteUser = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.EditPassword_Button = new System.Windows.Forms.Button();
+            this.PasswordDisplay2 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.PasswordDisplay1 = new System.Windows.Forms.TextBox();
+            this.Carousel = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Carousel)).BeginInit();
             this.SuspendLayout();
             // 
             // Sing_In_Chng
@@ -68,9 +93,11 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel1.Controls.Add(this.Mail_LogIn);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.Log_In_Chng);
             this.panel1.Controls.Add(this.SignIn_Button);
-            this.panel1.Controls.Add(this.Mail_LogIn);
+            this.panel1.Controls.Add(this.Password2_Login);
             this.panel1.Controls.Add(this.Password_Login);
             this.panel1.Controls.Add(this.Connect_LogIn);
             this.panel1.Controls.Add(this.label3);
@@ -82,6 +109,23 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(572, 561);
             this.panel1.TabIndex = 10;
+            // 
+            // Mail_LogIn
+            // 
+            this.Mail_LogIn.Location = new System.Drawing.Point(129, 379);
+            this.Mail_LogIn.Name = "Mail_LogIn";
+            this.Mail_LogIn.Size = new System.Drawing.Size(287, 20);
+            this.Mail_LogIn.TabIndex = 27;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.GhostWhite;
+            this.label4.Location = new System.Drawing.Point(126, 353);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "Correo";
             // 
             // Log_In_Chng
             // 
@@ -105,12 +149,13 @@
             this.SignIn_Button.UseVisualStyleBackColor = true;
             this.SignIn_Button.Click += new System.EventHandler(this.SignIn_Button_Click);
             // 
-            // Mail_LogIn
+            // Password2_Login
             // 
-            this.Mail_LogIn.Location = new System.Drawing.Point(129, 313);
-            this.Mail_LogIn.Name = "Mail_LogIn";
-            this.Mail_LogIn.Size = new System.Drawing.Size(287, 20);
-            this.Mail_LogIn.TabIndex = 23;
+            this.Password2_Login.Location = new System.Drawing.Point(129, 313);
+            this.Password2_Login.Name = "Password2_Login";
+            this.Password2_Login.PasswordChar = '*';
+            this.Password2_Login.Size = new System.Drawing.Size(287, 20);
+            this.Password2_Login.TabIndex = 23;
             // 
             // Password_Login
             // 
@@ -137,9 +182,9 @@
             this.label3.BackColor = System.Drawing.Color.GhostWhite;
             this.label3.Location = new System.Drawing.Point(126, 287);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.Size = new System.Drawing.Size(112, 13);
             this.label3.TabIndex = 24;
-            this.label3.Text = "Correo";
+            this.label3.Text = "Confirmar constraseña";
             // 
             // label2
             // 
@@ -170,18 +215,12 @@
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(567, 0);
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.Carousel);
+            this.panel2.Location = new System.Drawing.Point(567, -4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(588, 561);
             this.panel2.TabIndex = 14;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.MediumPurple;
-            this.panel5.Location = new System.Drawing.Point(922, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(231, 561);
-            this.panel5.TabIndex = 30;
             // 
             // panel4
             // 
@@ -191,7 +230,7 @@
             this.panel4.Controls.Add(this.Emoji_Button);
             this.panel4.Controls.Add(this.File_Button);
             this.panel4.Controls.Add(this.WriteMessage);
-            this.panel4.Location = new System.Drawing.Point(243, 0);
+            this.panel4.Location = new System.Drawing.Point(-131, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(684, 561);
             this.panel4.TabIndex = 29;
@@ -246,11 +285,30 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ControlText;
+            this.panel3.Controls.Add(this.RefreshContacts);
+            this.panel3.Controls.Add(this.SearchContact);
             this.panel3.Controls.Add(this.ContactList);
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(259, 561);
             this.panel3.TabIndex = 28;
+            // 
+            // RefreshContacts
+            // 
+            this.RefreshContacts.Location = new System.Drawing.Point(198, 40);
+            this.RefreshContacts.Name = "RefreshContacts";
+            this.RefreshContacts.Size = new System.Drawing.Size(34, 23);
+            this.RefreshContacts.TabIndex = 3;
+            this.RefreshContacts.Text = "button1";
+            this.RefreshContacts.UseVisualStyleBackColor = true;
+            this.RefreshContacts.Click += new System.EventHandler(this.RefreshContacts_Click);
+            // 
+            // SearchContact
+            // 
+            this.SearchContact.Location = new System.Drawing.Point(12, 42);
+            this.SearchContact.Name = "SearchContact";
+            this.SearchContact.Size = new System.Drawing.Size(181, 20);
+            this.SearchContact.TabIndex = 2;
             // 
             // ContactList
             // 
@@ -259,6 +317,170 @@
             this.ContactList.Name = "ContactList";
             this.ContactList.Size = new System.Drawing.Size(221, 472);
             this.ContactList.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(54, 35);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(129, 126);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // UserDisplay
+            // 
+            this.UserDisplay.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.UserDisplay.Location = new System.Drawing.Point(37, 240);
+            this.UserDisplay.Name = "UserDisplay";
+            this.UserDisplay.ReadOnly = true;
+            this.UserDisplay.Size = new System.Drawing.Size(166, 20);
+            this.UserDisplay.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(37, 221);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Usuario";
+            // 
+            // MailDisplay
+            // 
+            this.MailDisplay.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.MailDisplay.Location = new System.Drawing.Point(37, 287);
+            this.MailDisplay.Name = "MailDisplay";
+            this.MailDisplay.ReadOnly = true;
+            this.MailDisplay.Size = new System.Drawing.Size(166, 20);
+            this.MailDisplay.TabIndex = 3;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(37, 268);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(38, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Correo";
+            // 
+            // EditInfo_Button
+            // 
+            this.EditInfo_Button.Location = new System.Drawing.Point(65, 420);
+            this.EditInfo_Button.Name = "EditInfo_Button";
+            this.EditInfo_Button.Size = new System.Drawing.Size(118, 23);
+            this.EditInfo_Button.TabIndex = 5;
+            this.EditInfo_Button.Text = "Editar";
+            this.EditInfo_Button.UseVisualStyleBackColor = true;
+            this.EditInfo_Button.Click += new System.EventHandler(this.EditInfo_Button_Click);
+            // 
+            // SaveInfo_Button
+            // 
+            this.SaveInfo_Button.Location = new System.Drawing.Point(65, 478);
+            this.SaveInfo_Button.Name = "SaveInfo_Button";
+            this.SaveInfo_Button.Size = new System.Drawing.Size(118, 23);
+            this.SaveInfo_Button.TabIndex = 6;
+            this.SaveInfo_Button.Text = "Guardar Cambios";
+            this.SaveInfo_Button.UseVisualStyleBackColor = true;
+            this.SaveInfo_Button.Click += new System.EventHandler(this.SaveInfo_Button_Click);
+            // 
+            // DeleteUser
+            // 
+            this.DeleteUser.BackColor = System.Drawing.SystemColors.Control;
+            this.DeleteUser.ForeColor = System.Drawing.Color.Red;
+            this.DeleteUser.Location = new System.Drawing.Point(65, 530);
+            this.DeleteUser.Name = "DeleteUser";
+            this.DeleteUser.Size = new System.Drawing.Size(118, 23);
+            this.DeleteUser.TabIndex = 8;
+            this.DeleteUser.Text = "Eliminar Usuario";
+            this.DeleteUser.UseVisualStyleBackColor = false;
+            this.DeleteUser.Click += new System.EventHandler(this.DeleteUser_Click);
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.MediumPurple;
+            this.panel5.Controls.Add(this.EditPassword_Button);
+            this.panel5.Controls.Add(this.PasswordDisplay2);
+            this.panel5.Controls.Add(this.label8);
+            this.panel5.Controls.Add(this.label7);
+            this.panel5.Controls.Add(this.PasswordDisplay1);
+            this.panel5.Controls.Add(this.DeleteUser);
+            this.panel5.Controls.Add(this.SaveInfo_Button);
+            this.panel5.Controls.Add(this.EditInfo_Button);
+            this.panel5.Controls.Add(this.label6);
+            this.panel5.Controls.Add(this.MailDisplay);
+            this.panel5.Controls.Add(this.label5);
+            this.panel5.Controls.Add(this.UserDisplay);
+            this.panel5.Controls.Add(this.pictureBox1);
+            this.panel5.Location = new System.Drawing.Point(288, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(231, 561);
+            this.panel5.TabIndex = 30;
+            // 
+            // EditPassword_Button
+            // 
+            this.EditPassword_Button.Location = new System.Drawing.Point(65, 449);
+            this.EditPassword_Button.Name = "EditPassword_Button";
+            this.EditPassword_Button.Size = new System.Drawing.Size(118, 23);
+            this.EditPassword_Button.TabIndex = 13;
+            this.EditPassword_Button.Text = "Editar Contraseña";
+            this.EditPassword_Button.UseVisualStyleBackColor = true;
+            this.EditPassword_Button.Click += new System.EventHandler(this.EditPassword_Button_Click);
+            // 
+            // PasswordDisplay2
+            // 
+            this.PasswordDisplay2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.PasswordDisplay2.Location = new System.Drawing.Point(40, 384);
+            this.PasswordDisplay2.Name = "PasswordDisplay2";
+            this.PasswordDisplay2.PasswordChar = '*';
+            this.PasswordDisplay2.Size = new System.Drawing.Size(166, 20);
+            this.PasswordDisplay2.TabIndex = 12;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(37, 368);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(107, 13);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Confirmar contraseña";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(37, 320);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(61, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Contraseña";
+            // 
+            // PasswordDisplay1
+            // 
+            this.PasswordDisplay1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.PasswordDisplay1.Location = new System.Drawing.Point(40, 336);
+            this.PasswordDisplay1.Name = "PasswordDisplay1";
+            this.PasswordDisplay1.PasswordChar = '*';
+            this.PasswordDisplay1.Size = new System.Drawing.Size(166, 20);
+            this.PasswordDisplay1.TabIndex = 9;
+            // 
+            // Carousel
+            // 
+            this.Carousel.Image = ((System.Drawing.Image)(resources.GetObject("Carousel.Image")));
+            this.Carousel.Location = new System.Drawing.Point(4, 118);
+            this.Carousel.Name = "Carousel";
+            this.Carousel.Size = new System.Drawing.Size(582, 345);
+            this.Carousel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Carousel.TabIndex = 0;
+            this.Carousel.TabStop = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 3000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -278,9 +500,15 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Carousel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -290,7 +518,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button SignIn_Button;
-        private System.Windows.Forms.TextBox Mail_LogIn;
+        private System.Windows.Forms.TextBox Password2_Login;
         private System.Windows.Forms.TextBox Password_Login;
         private System.Windows.Forms.Button Connect_LogIn;
         private System.Windows.Forms.Label label3;
@@ -298,7 +526,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox User_LogIn;
         private System.Windows.Forms.Button Log_In_Chng;
-        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ListBox listBoxMessages;
         private System.Windows.Forms.Button Emoji_Button;
@@ -307,6 +534,26 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ListBox ContactList;
         private System.Windows.Forms.Button Send_Button;
+        private System.Windows.Forms.TextBox Mail_LogIn;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox UserDisplay;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox MailDisplay;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button EditInfo_Button;
+        private System.Windows.Forms.Button SaveInfo_Button;
+        private System.Windows.Forms.Button DeleteUser;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button RefreshContacts;
+        private System.Windows.Forms.TextBox SearchContact;
+        private System.Windows.Forms.TextBox PasswordDisplay2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox PasswordDisplay1;
+        private System.Windows.Forms.Button EditPassword_Button;
+        private System.Windows.Forms.PictureBox Carousel;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
