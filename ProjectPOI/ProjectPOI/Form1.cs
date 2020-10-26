@@ -81,8 +81,8 @@ namespace ProjectPOI
                     streamW = new StreamWriter(stream);
                     streamR = new StreamReader(stream);
 
-                    streamW.WriteLine(nick);
-                    streamW.Flush();
+                    //streamW.WriteLine(nick);
+                    //streamW.Flush();
 
                     t.Start();
                 }
@@ -236,6 +236,7 @@ namespace ProjectPOI
         /// </summary> 
         void LogIn()
         {
+
             DataTable dataTa = new DataTable();
             objUserU.user = User_LogIn.Text;
             objUserU.pass = Password_Login.Text;
@@ -400,6 +401,32 @@ namespace ProjectPOI
             }
         }
 
+        private void MostrarBusqueda()
+        {
+            UsersLibrary UserSerach = new UsersLibrary();
+            UserSerach.user = SearchContact.Text;
+            DataTable Users = new DataTable();
+
+            Users = objUsersAll.SearchUsers(UserSerach);
+
+            ContactList.Items.Clear();
+
+            for (int i = 0; i < Users.Rows.Count; i++)
+            {
+                if (Users.Rows[i][0].ToString() != objUserU.user)
+                {
+                    ContactList.Items.Add(Users.Rows[i][0].ToString());
+                }
+                else
+                {
+                    objUserU.mail = Users.Rows[i][2].ToString();
+                    UserDisplay.Text = Users.Rows[i][0].ToString();
+                    MailDisplay.Text = Users.Rows[i][2].ToString();
+
+                }
+            }
+        }
+
         /// --------------------------------------------------------------Segunda pantalla. Mensajes
 
         private void File_Button_Click(object sender, EventArgs e)
@@ -418,6 +445,7 @@ namespace ProjectPOI
         /// </summary>  
         private void Send_Button_Click(object sender, EventArgs e)
         {
+
             streamW.WriteLine(WriteMessage.Text);
             streamW.Flush();
             WriteMessage.Clear();
@@ -561,7 +589,15 @@ namespace ProjectPOI
 
         private void RefreshContacts_Click(object sender, EventArgs e)
         {
-            MostrarUsuarios();
+            if(SearchContact.Text!="")
+            {
+                MostrarBusqueda();
+            }
+            else
+            {
+                MostrarUsuarios();
+            }
+            
         }
 
         private void EditPassword_Button_Click(object sender, EventArgs e)

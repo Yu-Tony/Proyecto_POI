@@ -230,7 +230,7 @@
             this.panel4.Controls.Add(this.Emoji_Button);
             this.panel4.Controls.Add(this.File_Button);
             this.panel4.Controls.Add(this.WriteMessage);
-            this.panel4.Location = new System.Drawing.Point(-131, 0);
+            this.panel4.Location = new System.Drawing.Point(246, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(684, 561);
             this.panel4.TabIndex = 29;
@@ -416,7 +416,7 @@
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.UserDisplay);
             this.panel5.Controls.Add(this.pictureBox1);
-            this.panel5.Location = new System.Drawing.Point(288, 0);
+            this.panel5.Location = new System.Drawing.Point(920, 0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(231, 561);
             this.panel5.TabIndex = 30;

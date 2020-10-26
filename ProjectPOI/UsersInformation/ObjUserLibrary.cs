@@ -34,6 +34,11 @@ namespace UsersInformation
             return objU.TraerContactos();
         }
 
+        public DataTable SearchUsers(UsersLibrary _objU)
+        {
+            return objU.TraerContacto(_objU);
+        }
+
         public DataTable ChangeUser(UsersLibrary _objU, UsersLibrary _objUU)
         {
             return objU.CnhgUser(_objU, _objUU);

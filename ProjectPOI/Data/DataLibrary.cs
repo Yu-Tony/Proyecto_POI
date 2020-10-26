@@ -54,6 +54,18 @@ namespace LogIn_SingIn
 
         }
 
+        public DataTable TraerContacto(UsersLibrary obj)
+        {
+            SqlCommand cmd = new SqlCommand("Search_User", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@keyWord", obj.user);
+            SqlDataAdapter dataAd = new SqlDataAdapter(cmd);
+            DataTable dataTa = new DataTable();
+            dataAd.Fill(dataTa);
+            return dataTa;
+
+        }
+
         public DataTable CnhgUser(UsersLibrary objActual, UsersLibrary objNew)
         {
 
