@@ -44,6 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.User_LogIn = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.Carousel = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.Send_Button = new System.Windows.Forms.Button();
             this.listBoxMessages = new System.Windows.Forms.ListBox();
@@ -68,15 +69,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.PasswordDisplay1 = new System.Windows.Forms.TextBox();
-            this.Carousel = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Carousel)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Carousel)).BeginInit();
             this.SuspendLayout();
             // 
             // Sing_In_Chng
@@ -222,6 +222,16 @@
             this.panel2.Size = new System.Drawing.Size(588, 561);
             this.panel2.TabIndex = 14;
             // 
+            // Carousel
+            // 
+            this.Carousel.Image = ((System.Drawing.Image)(resources.GetObject("Carousel.Image")));
+            this.Carousel.Location = new System.Drawing.Point(4, 118);
+            this.Carousel.Name = "Carousel";
+            this.Carousel.Size = new System.Drawing.Size(582, 345);
+            this.Carousel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Carousel.TabIndex = 0;
+            this.Carousel.TabStop = false;
+            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Brown;
@@ -317,6 +327,7 @@
             this.ContactList.Name = "ContactList";
             this.ContactList.Size = new System.Drawing.Size(221, 472);
             this.ContactList.TabIndex = 1;
+            this.ContactList.SelectedIndexChanged += new System.EventHandler(this.ContactList_SelectedIndexChanged);
             // 
             // pictureBox1
             // 
@@ -370,7 +381,7 @@
             // 
             // EditInfo_Button
             // 
-            this.EditInfo_Button.Location = new System.Drawing.Point(65, 420);
+            this.EditInfo_Button.Location = new System.Drawing.Point(69, 420);
             this.EditInfo_Button.Name = "EditInfo_Button";
             this.EditInfo_Button.Size = new System.Drawing.Size(118, 23);
             this.EditInfo_Button.TabIndex = 5;
@@ -380,7 +391,7 @@
             // 
             // SaveInfo_Button
             // 
-            this.SaveInfo_Button.Location = new System.Drawing.Point(65, 478);
+            this.SaveInfo_Button.Location = new System.Drawing.Point(69, 478);
             this.SaveInfo_Button.Name = "SaveInfo_Button";
             this.SaveInfo_Button.Size = new System.Drawing.Size(118, 23);
             this.SaveInfo_Button.TabIndex = 6;
@@ -423,7 +434,7 @@
             // 
             // EditPassword_Button
             // 
-            this.EditPassword_Button.Location = new System.Drawing.Point(65, 449);
+            this.EditPassword_Button.Location = new System.Drawing.Point(69, 449);
             this.EditPassword_Button.Name = "EditPassword_Button";
             this.EditPassword_Button.Size = new System.Drawing.Size(118, 23);
             this.EditPassword_Button.TabIndex = 13;
@@ -434,7 +445,7 @@
             // PasswordDisplay2
             // 
             this.PasswordDisplay2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.PasswordDisplay2.Location = new System.Drawing.Point(40, 384);
+            this.PasswordDisplay2.Location = new System.Drawing.Point(37, 384);
             this.PasswordDisplay2.Name = "PasswordDisplay2";
             this.PasswordDisplay2.PasswordChar = '*';
             this.PasswordDisplay2.Size = new System.Drawing.Size(166, 20);
@@ -461,21 +472,11 @@
             // PasswordDisplay1
             // 
             this.PasswordDisplay1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.PasswordDisplay1.Location = new System.Drawing.Point(40, 336);
+            this.PasswordDisplay1.Location = new System.Drawing.Point(37, 336);
             this.PasswordDisplay1.Name = "PasswordDisplay1";
             this.PasswordDisplay1.PasswordChar = '*';
             this.PasswordDisplay1.Size = new System.Drawing.Size(166, 20);
             this.PasswordDisplay1.TabIndex = 9;
-            // 
-            // Carousel
-            // 
-            this.Carousel.Image = ((System.Drawing.Image)(resources.GetObject("Carousel.Image")));
-            this.Carousel.Location = new System.Drawing.Point(4, 118);
-            this.Carousel.Name = "Carousel";
-            this.Carousel.Size = new System.Drawing.Size(582, 345);
-            this.Carousel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Carousel.TabIndex = 0;
-            this.Carousel.TabStop = false;
             // 
             // timer1
             // 
@@ -501,6 +502,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Carousel)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -508,7 +510,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Carousel)).EndInit();
             this.ResumeLayout(false);
 
         }

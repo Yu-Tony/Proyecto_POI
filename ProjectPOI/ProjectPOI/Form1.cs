@@ -17,6 +17,7 @@ using Transitions;
 using Users;
 using UsersInformation;
 
+using Newtonsoft.Json;
 
 namespace ProjectPOI
 {
@@ -30,6 +31,11 @@ namespace ProjectPOI
         static private TcpClient client = new TcpClient();
         //identificar usuario
         static private string nick = "Unknown";
+        static private string selected = "Unknown";
+
+       
+
+
         //crear enlaces al listbox para agregar info del server
         private delegate void GiveItem(string s);
 
@@ -41,6 +47,7 @@ namespace ProjectPOI
         //Bool para ver si se cambiara la contrase;a o no
         bool Pass = false;
         bool Conect = false;
+
 
         private void AddItem(string s)
         {
@@ -58,7 +65,20 @@ namespace ProjectPOI
             {
                 try 
                 {
-                    this.Invoke(new GiveItem(AddItem), streamR.ReadLine());
+                    string read = streamR.ReadLine();
+                    Messages newMensaje = JsonConvert.DeserializeObject<Messages>(read);
+
+                    if ((newMensaje.destinatario == nick && newMensaje.remitente == selected) || newMensaje.remitente == nick)
+                    {
+                        string Enviado = newMensaje.remitente + ":" + newMensaje.mensaje;
+                        this.Invoke(new GiveItem(AddItem), Enviado);
+                        //AddItem(Enviado);
+
+                    }
+                        
+
+                    //this.Invoke(new GiveItem(AddItem), streamR.ReadLine());
+                   
                 }
                 catch
                 {
@@ -72,7 +92,9 @@ namespace ProjectPOI
         {
             try 
             {
+
                 client.Connect("127.0.0.1", 8000);
+        
                 if (client.Connected)
                 {
                     Thread t = new Thread(Listen);
@@ -81,8 +103,9 @@ namespace ProjectPOI
                     streamW = new StreamWriter(stream);
                     streamR = new StreamReader(stream);
 
-                    //streamW.WriteLine(nick);
-                    //streamW.Flush();
+
+                    streamW.WriteLine(nick);
+                    streamW.Flush();
 
                     t.Start();
                 }
@@ -446,9 +469,23 @@ namespace ProjectPOI
         private void Send_Button_Click(object sender, EventArgs e)
         {
 
-            streamW.WriteLine(WriteMessage.Text);
+            //streamW.WriteLine(WriteMessage.Text);
+            string msg = WriteMessage.Text;
+            Messages mensaje = new Messages {remitente = nick, destinatario = selected, mensaje = msg };
+            string result = JsonConvert.SerializeObject(mensaje);
+            streamW.WriteLine(result);
+
+            ////////////////////////////////////////////////////////////////////////////////////////POR HACER
+            //guardarMensajes();
+
             streamW.Flush();
             WriteMessage.Clear();
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////POR HACER
+        private void guardarMensajes(string mensaje, string persona)
+        {
+
         }
 
         private void EditInfo_Button_Click(object sender, EventArgs e)
@@ -635,7 +672,8 @@ namespace ProjectPOI
 
                 dataTa = objUserI._Users(objUserU);
 
-                TransitionToMain();
+                //TransitionToMain();
+                this.Close();
 
             }
 
@@ -657,5 +695,20 @@ namespace ProjectPOI
         {
             LoadImage();
         }
+
+        private void ContactList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selected = ContactList.GetItemText(ContactList.SelectedItem);
+           
+
+
+        }
+    }
+
+    class Messages
+    {
+        public string remitente { get; set; }
+        public string destinatario { get; set; }
+        public string mensaje { get; set; }
     }
 }

@@ -13,15 +13,16 @@ namespace ServerPOI
 {
     class Servidor_Chat
     {
+
+        
         //Permita esperar la conexion del cliente
         private TcpListener server;
         //Promocionar una conexion netre el servidor y el cliente 
         private TcpClient client = new TcpClient();
         //Instacniar la clase, se va a trabajar con las IP
         private IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 8000);
-        //Para hacer la conexion
+        //Para hacer la conexion, y tener una lista de todas las conecciones
         private List<Connection> list = new List<Connection>();
-
         Connection connect;
 
         private struct Connection
@@ -31,6 +32,7 @@ namespace ServerPOI
             public StreamReader streamR;
             //para identificar al usuario
             public string nick;
+            public string enviar;
         }
 
         public Servidor_Chat()
@@ -40,6 +42,7 @@ namespace ServerPOI
 
         public void Inicio()
         {
+            int NumRed = 0;
             Console.WriteLine("Servidor Activado");
             server = new TcpListener(endPoint);
             server.Start();
@@ -66,6 +69,7 @@ namespace ServerPOI
                 //para un buscador
                 Thread thread = new Thread(EscucharConexion);
                 thread.Start();
+                NumRed++;
             }
         }
 
@@ -73,20 +77,24 @@ namespace ServerPOI
         {
             Connection hcon = connect; //hconection
 
+
             //ver si la conexion se pudo realizar o no
             do
             {
                 try
                 {
                     string tmp = hcon.streamR.ReadLine();
-                    Console.WriteLine(hcon.nick + ": " + tmp);
+                    Console.WriteLine(tmp);
                     //mostar el listado de los datos leidos
+
+                  
                     foreach (Connection c in list)
                     {
                         //condicion
                         try
                         {
-                            c.streamW.WriteLine(hcon.nick + ": " + tmp);
+                            //Escribir el mensaje
+                            c.streamW.WriteLine(tmp);
                             c.streamW.Flush();
                         }
                         catch

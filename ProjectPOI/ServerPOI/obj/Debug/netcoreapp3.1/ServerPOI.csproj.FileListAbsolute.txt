@@ -9,3 +9,14 @@ C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\ServerPOI\obj\Debug\netcoreap
 C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\ServerPOI\obj\Debug\netcoreapp3.1\ServerPOI.AssemblyInfo.cs
 C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\ServerPOI\obj\Debug\netcoreapp3.1\ServerPOI.dll
 C:\Users\Nahomi Soto\source\repos\7 POI\ProjectPOI\ServerPOI\obj\Debug\netcoreapp3.1\ServerPOI.pdb
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\ServerPOI\bin\Debug\netcoreapp3.1\ServerPOI.exe
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\ServerPOI\bin\Debug\netcoreapp3.1\ServerPOI.deps.json
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\ServerPOI\bin\Debug\netcoreapp3.1\ServerPOI.runtimeconfig.json
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\ServerPOI\bin\Debug\netcoreapp3.1\ServerPOI.runtimeconfig.dev.json
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\ServerPOI\bin\Debug\netcoreapp3.1\ServerPOI.dll
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\ServerPOI\bin\Debug\netcoreapp3.1\ServerPOI.pdb
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\ServerPOI\obj\Debug\netcoreapp3.1\ServerPOI.csprojAssemblyReference.cache
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\ServerPOI\obj\Debug\netcoreapp3.1\ServerPOI.AssemblyInfoInputs.cache
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\ServerPOI\obj\Debug\netcoreapp3.1\ServerPOI.AssemblyInfo.cs
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\ServerPOI\obj\Debug\netcoreapp3.1\ServerPOI.dll
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\ServerPOI\obj\Debug\netcoreapp3.1\ServerPOI.pdb
