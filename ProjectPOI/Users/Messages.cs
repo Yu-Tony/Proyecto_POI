@@ -11,5 +11,6 @@ namespace Users
         public string remitente { get; set; }
         public string destinatario { get; set; }
         public string mensaje { get; set; }
+        public string grupo { get; set; }
     }
 }

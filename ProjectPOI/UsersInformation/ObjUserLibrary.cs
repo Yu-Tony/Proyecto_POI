@@ -20,6 +20,7 @@ namespace UsersInformation
     {
         DataLibrary objU = new DataLibrary();
        MessageLibrary objM = new MessageLibrary();
+        GroupsLibrary objG = new GroupsLibrary();
 
         public DataTable _Users(UsersLibrary _objU)
         {
@@ -60,6 +61,19 @@ namespace UsersInformation
         {
             return objM.SearchMes(_objU);
         }
+
+        public DataTable CreateGroups(Groups _objU)
+        {
+            return objG.CreateGp(_objU);
+        }
+
+        public DataTable GetUserGroups(Groups _objU)
+        {
+            return objG.GetUserGp(_objU);
+        }
+
+       
+
 
 
     }

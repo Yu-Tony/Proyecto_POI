@@ -737,7 +737,7 @@ namespace ProjectPOI
 
         private void CreateGroup_Click(object sender, EventArgs e)
         {
-            Form2 GW = new Form2();
+            Form2 GW = new Form2(objUserU);
             GW.ShowDialog();
         }
     }

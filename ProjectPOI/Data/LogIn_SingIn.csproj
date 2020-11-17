@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataLibrary.cs" />
+    <Compile Include="GroupsLibrary.cs" />
     <Compile Include="MessageLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

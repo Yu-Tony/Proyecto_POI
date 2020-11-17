@@ -68,6 +68,7 @@
             this.ChatMembersIn.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.ChatMembersIn.Size = new System.Drawing.Size(168, 238);
             this.ChatMembersIn.TabIndex = 6;
+            this.ChatMembersIn.SelectedIndexChanged += new System.EventHandler(this.ChatMembersIn_SelectedIndexChanged);
             // 
             // CrearGrupoBtn
             // 
@@ -77,6 +78,7 @@
             this.CrearGrupoBtn.TabIndex = 5;
             this.CrearGrupoBtn.Text = "Crear Grupo";
             this.CrearGrupoBtn.UseVisualStyleBackColor = true;
+            this.CrearGrupoBtn.Click += new System.EventHandler(this.CrearGrupoBtn_Click);
             // 
             // Form2
             // 
