@@ -17,6 +17,7 @@ using Transitions;
 using Users;
 using UsersInformation;
 
+
 using Newtonsoft.Json;
 
 namespace ProjectPOI
@@ -40,9 +41,14 @@ namespace ProjectPOI
         private delegate void GiveItem(string s);
 
         //Para crear el objeto de usuario y revisarlo
+        //User con los datos ingresados para login, a buscar
         UsersLibrary objUserU = new UsersLibrary();
+        //User login para usar la funcion
         ObjUserLibrary objUserI = new ObjUserLibrary();
         ObjUserLibrary objUsersAll = new ObjUserLibrary();
+
+        ObjUserLibrary MessageToSave = new ObjUserLibrary();
+        ObjUserLibrary objMessagesAll = new ObjUserLibrary();
 
         //Bool para ver si se cambiara la contrase;a o no
         bool Pass = false;
@@ -70,7 +76,7 @@ namespace ProjectPOI
 
                     if ((newMensaje.destinatario == nick && newMensaje.remitente == selected) || newMensaje.remitente == nick)
                     {
-                        string Enviado = newMensaje.remitente + ":" + newMensaje.mensaje;
+                        string Enviado = newMensaje.remitente + " : " + newMensaje.mensaje;
                         this.Invoke(new GiveItem(AddItem), Enviado);
                         //AddItem(Enviado);
 
@@ -424,6 +430,37 @@ namespace ProjectPOI
             }
         }
 
+        private void GuardarMensajes(string msg)
+        {
+            DataTable Messages = new DataTable();
+            Messages Search = new Messages();
+            Search.remitente = nick;
+            Search.destinatario = selected;
+            Search.mensaje = CifradoCesar.Encipher(msg, 4);
+            Messages = MessageToSave.InsertMessages(Search);
+
+        }
+
+        private void MostrarMensajes()
+        {
+            
+            DataTable Messages = new DataTable();
+            Messages Search = new Messages();
+            Search.remitente = nick;
+            Search.destinatario = selected;
+            Messages = objMessagesAll.SearchMessages(Search);
+
+            listBoxMessages.Items.Clear();
+
+            for (int i = 0; i < Messages.Rows.Count; i++)
+            {
+                string MessageDecrypt = CifradoCesar.Decipher(Messages.Rows[i][2].ToString(), 4);
+                listBoxMessages.Items.Add(Messages.Rows[i][0].ToString() + " : " + MessageDecrypt);
+    
+                
+            }
+        }
+
         private void MostrarBusqueda()
         {
             UsersLibrary UserSerach = new UsersLibrary();
@@ -475,18 +512,11 @@ namespace ProjectPOI
             string result = JsonConvert.SerializeObject(mensaje);
             streamW.WriteLine(result);
 
-            ////////////////////////////////////////////////////////////////////////////////////////POR HACER
-            //guardarMensajes();
-
+            GuardarMensajes(msg);
             streamW.Flush();
             WriteMessage.Clear();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////POR HACER
-        private void guardarMensajes(string mensaje, string persona)
-        {
-
-        }
 
         private void EditInfo_Button_Click(object sender, EventArgs e)
         {
@@ -699,16 +729,18 @@ namespace ProjectPOI
         private void ContactList_SelectedIndexChanged(object sender, EventArgs e)
         {
             selected = ContactList.GetItemText(ContactList.SelectedItem);
-           
+            listBoxMessages.Items.Clear();
+            MostrarMensajes();
 
 
         }
+
+        private void CreateGroup_Click(object sender, EventArgs e)
+        {
+            Form2 GW = new Form2();
+            GW.ShowDialog();
+        }
     }
 
-    class Messages
-    {
-        public string remitente { get; set; }
-        public string destinatario { get; set; }
-        public string mensaje { get; set; }
-    }
+
 }

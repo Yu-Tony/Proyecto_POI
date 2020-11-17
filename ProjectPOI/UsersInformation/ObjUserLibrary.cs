@@ -12,12 +12,14 @@ using System.Data;
 
 using Users;
 using LogIn_SingIn;
+using Data;
 
 namespace UsersInformation
 {
     public class ObjUserLibrary
     {
         DataLibrary objU = new DataLibrary();
+       MessageLibrary objM = new MessageLibrary();
 
         public DataTable _Users(UsersLibrary _objU)
         {
@@ -47,6 +49,16 @@ namespace UsersInformation
         public DataTable DeleteUser(UsersLibrary _objU)
         {
             return objU.DelUser(_objU);
+        }
+
+        public DataTable InsertMessages(Messages _objU)
+        {
+            return objM.InsertMes(_objU);
+        }
+
+        public DataTable SearchMessages(Messages _objU)
+        {
+            return objM.SearchMes(_objU);
         }
 
 

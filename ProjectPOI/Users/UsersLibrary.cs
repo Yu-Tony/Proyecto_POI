@@ -19,4 +19,6 @@ namespace Users
         public string pass { get; set; }
 
     }
+
+
 }

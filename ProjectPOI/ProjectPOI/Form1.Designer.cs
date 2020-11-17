@@ -70,6 +70,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.PasswordDisplay1 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.CreateGroup = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Carousel)).BeginInit();
@@ -295,6 +296,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ControlText;
+            this.panel3.Controls.Add(this.CreateGroup);
             this.panel3.Controls.Add(this.RefreshContacts);
             this.panel3.Controls.Add(this.SearchContact);
             this.panel3.Controls.Add(this.ContactList);
@@ -325,7 +327,7 @@
             this.ContactList.FormattingEnabled = true;
             this.ContactList.Location = new System.Drawing.Point(11, 77);
             this.ContactList.Name = "ContactList";
-            this.ContactList.Size = new System.Drawing.Size(221, 472);
+            this.ContactList.Size = new System.Drawing.Size(221, 433);
             this.ContactList.TabIndex = 1;
             this.ContactList.SelectedIndexChanged += new System.EventHandler(this.ContactList_SelectedIndexChanged);
             // 
@@ -483,6 +485,16 @@
             this.timer1.Interval = 3000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // CreateGroup
+            // 
+            this.CreateGroup.Location = new System.Drawing.Point(70, 522);
+            this.CreateGroup.Name = "CreateGroup";
+            this.CreateGroup.Size = new System.Drawing.Size(112, 27);
+            this.CreateGroup.TabIndex = 4;
+            this.CreateGroup.Text = "Crear Grupo";
+            this.CreateGroup.UseVisualStyleBackColor = true;
+            this.CreateGroup.Click += new System.EventHandler(this.CreateGroup_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -555,6 +567,7 @@
         private System.Windows.Forms.Button EditPassword_Button;
         private System.Windows.Forms.PictureBox Carousel;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button CreateGroup;
     }
 }
 
