@@ -9,7 +9,7 @@ _Chat hecho en windows forms_
 * Mensajes grupales e individual
 * Emojis e imagenes
 * Video
-* Guardar mensajes
+* Correo electronico
 
 ## Versiones
 
