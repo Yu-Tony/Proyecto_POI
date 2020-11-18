@@ -28,18 +28,43 @@ namespace Data
 
         }
 
-        public DataTable GetUserGp(Groups obj)
+        public DataTable GetUserGps(Groups obj)
         {
-            SqlCommand cmd = new SqlCommand("Login_User", conn);
+            SqlCommand cmd = new SqlCommand("Get_Group", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@user", obj.NombrePersona);
-            cmd.Parameters.AddWithValue("@pass", obj.NombreGrupo);
+            cmd.Parameters.AddWithValue("@NomPers", obj.NombrePersona);
             SqlDataAdapter dataAd = new SqlDataAdapter(cmd);
             DataTable dataTa = new DataTable();
             dataAd.Fill(dataTa);
             return dataTa;
 
         }
+
+        public DataTable GetUserFGps(Groups obj)
+        {
+            SqlCommand cmd = new SqlCommand("Get_UsersG", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@nomGpo", obj.NombreGrupo);
+            SqlDataAdapter dataAd = new SqlDataAdapter(cmd);
+            DataTable dataTa = new DataTable();
+            dataAd.Fill(dataTa);
+            return dataTa;
+
+        }
+
+        public DataTable TraerGrupo(Groups obj)
+        {
+            SqlCommand cmd = new SqlCommand("Search_Group", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@keyWord", obj.NombreGrupo);
+            SqlDataAdapter dataAd = new SqlDataAdapter(cmd);
+            DataTable dataTa = new DataTable();
+            dataAd.Fill(dataTa);
+            return dataTa;
+
+        }
+
+
     }
 }
 

@@ -69,10 +69,19 @@ namespace UsersInformation
 
         public DataTable GetUserGroups(Groups _objU)
         {
-            return objG.GetUserGp(_objU);
+            return objG.GetUserGps(_objU);
         }
 
-       
+        public DataTable GetUsersFromGroups(Groups _objU)
+        {
+            return objG.GetUserFGps(_objU);
+        }
+
+        public DataTable SearchGroup(Groups _objU)
+        {
+            return objG.TraerGrupo(_objU);
+        }
+
 
 
 

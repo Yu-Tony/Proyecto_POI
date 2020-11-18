@@ -24,6 +24,7 @@ namespace Data
             cmd.Parameters.AddWithValue("@desti", obj.destinatario);
             cmd.Parameters.AddWithValue("@mensaje", obj.mensaje);
             cmd.Parameters.AddWithValue("@grupo", obj.grupo);
+            cmd.Parameters.AddWithValue("@time", obj.NowTime);
             SqlDataAdapter dataAd = new SqlDataAdapter(cmd);
             DataTable dataTa = new DataTable();
             dataAd.Fill(dataTa);

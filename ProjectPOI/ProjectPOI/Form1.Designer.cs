@@ -52,6 +52,7 @@
             this.File_Button = new System.Windows.Forms.Button();
             this.WriteMessage = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.CreateGroup = new System.Windows.Forms.Button();
             this.RefreshContacts = new System.Windows.Forms.Button();
             this.SearchContact = new System.Windows.Forms.TextBox();
             this.ContactList = new System.Windows.Forms.ListBox();
@@ -70,7 +71,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.PasswordDisplay1 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.CreateGroup = new System.Windows.Forms.Button();
+            this.SalirGrupo = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Carousel)).BeginInit();
@@ -296,6 +297,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ControlText;
+            this.panel3.Controls.Add(this.SalirGrupo);
             this.panel3.Controls.Add(this.CreateGroup);
             this.panel3.Controls.Add(this.RefreshContacts);
             this.panel3.Controls.Add(this.SearchContact);
@@ -304,6 +306,16 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(259, 561);
             this.panel3.TabIndex = 28;
+            // 
+            // CreateGroup
+            // 
+            this.CreateGroup.Location = new System.Drawing.Point(16, 520);
+            this.CreateGroup.Name = "CreateGroup";
+            this.CreateGroup.Size = new System.Drawing.Size(96, 27);
+            this.CreateGroup.TabIndex = 4;
+            this.CreateGroup.Text = "Crear Grupo";
+            this.CreateGroup.UseVisualStyleBackColor = true;
+            this.CreateGroup.Click += new System.EventHandler(this.CreateGroup_Click);
             // 
             // RefreshContacts
             // 
@@ -485,15 +497,14 @@
             this.timer1.Interval = 3000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // CreateGroup
+            // SalirGrupo
             // 
-            this.CreateGroup.Location = new System.Drawing.Point(70, 522);
-            this.CreateGroup.Name = "CreateGroup";
-            this.CreateGroup.Size = new System.Drawing.Size(112, 27);
-            this.CreateGroup.TabIndex = 4;
-            this.CreateGroup.Text = "Crear Grupo";
-            this.CreateGroup.UseVisualStyleBackColor = true;
-            this.CreateGroup.Click += new System.EventHandler(this.CreateGroup_Click);
+            this.SalirGrupo.Location = new System.Drawing.Point(136, 520);
+            this.SalirGrupo.Name = "SalirGrupo";
+            this.SalirGrupo.Size = new System.Drawing.Size(96, 27);
+            this.SalirGrupo.TabIndex = 5;
+            this.SalirGrupo.Text = "Salir del grupo";
+            this.SalirGrupo.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -568,6 +579,7 @@
         private System.Windows.Forms.PictureBox Carousel;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button CreateGroup;
+        private System.Windows.Forms.Button SalirGrupo;
     }
 }
 

@@ -50,6 +50,18 @@ namespace ProjectPOI
         ObjUserLibrary MessageToSave = new ObjUserLibrary();
         ObjUserLibrary objMessagesAll = new ObjUserLibrary();
 
+        ObjUserLibrary GetGroups = new ObjUserLibrary();
+        ObjUserLibrary UsersFromGroup = new ObjUserLibrary();
+
+        /// <summary>
+        /// Contiene todos los usuarios que estan disponibles
+        /// </summary>
+        DataTable Users = new DataTable();
+        /// <summary>
+        /// Todos los grupos que tiene ese usuario
+        /// </summary>
+        DataTable Groups = new DataTable();
+
         //Bool para ver si se cambiara la contrase;a o no
         bool Pass = false;
         bool Conect = false;
@@ -69,12 +81,23 @@ namespace ProjectPOI
         {
             while (client.Connected)
             {
-                try 
+                try
                 {
                     string read = streamR.ReadLine();
                     Messages newMensaje = JsonConvert.DeserializeObject<Messages>(read);
 
-                    if ((newMensaje.destinatario == nick && newMensaje.remitente == selected) || newMensaje.remitente == nick)
+                    bool IsInGroup = false;
+                    for (int i = 0; i < Groups.Rows.Count; i++)
+                    {
+
+                        if(Groups.Rows[i][0].ToString() == selected)
+                        {
+                            IsInGroup = true;
+                        }
+
+                    }
+
+                    if ((newMensaje.destinatario == nick && newMensaje.remitente == selected) || newMensaje.remitente == nick || IsInGroup==true)
                     {
                         string Enviado = newMensaje.remitente + " : " + newMensaje.mensaje;
                         this.Invoke(new GiveItem(AddItem), Enviado);
@@ -409,8 +432,13 @@ namespace ProjectPOI
         private void MostrarUsuarios()
         {
             //Mostrar usuarios
-            DataTable Users = new DataTable();
+          
             Users = objUsersAll.AllUsers();
+
+            Groups GG = new Groups();
+            GG.NombrePersona = objUserU.user;
+            
+            Groups = GetGroups.GetUserGroups(GG);
 
             ContactList.Items.Clear();
 
@@ -428,16 +456,62 @@ namespace ProjectPOI
 
                 }
             }
+
+            for (int i = 0; i < Groups.Rows.Count; i++)
+            {
+
+                ContactList.Items.Add(Groups.Rows[i][0].ToString());
+
+            }
         }
 
         private void GuardarMensajes(string msg)
         {
+            
             DataTable Messages = new DataTable();
             Messages Search = new Messages();
             Search.remitente = nick;
-            Search.destinatario = selected;
             Search.mensaje = CifradoCesar.Encipher(msg, 4);
-            Messages = MessageToSave.InsertMessages(Search);
+
+            DateTime myDateTime = DateTime.Now;
+            //string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+
+            Search.NowTime = myDateTime;
+
+            for (int i = 0; i < Users.Rows.Count; i++)
+            {
+                if (Users.Rows[i][0].ToString() == selected)
+                {
+                    Search.grupo = "";
+                    Search.destinatario = selected;
+                    Messages = MessageToSave.InsertMessages(Search);
+                }
+            }
+
+            for (int i = 0; i < Groups.Rows.Count; i++)
+            {
+                if (Groups.Rows[i][0].ToString() == selected)
+                {
+                    //DataTable UsersFromGrp = new DataTable();
+                    //Groups UsersG = new Groups();
+                    //UsersG.NombreGrupo = selected;
+                    Search.grupo = selected;
+                    Search.destinatario = "";
+                    Messages = MessageToSave.InsertMessages(Search);
+                    //UsersFromGrp = UsersFromGroup.GetUsersFromGroups(UsersG);
+                    //Search.grupo = selected;
+                    //for (int j = 0; j < UsersFromGrp.Rows.Count; j++)
+                    //{
+                    //    Search.destinatario = UsersFromGrp.Rows[j][0].ToString();
+                    //    Messages = MessageToSave.InsertMessages(Search);
+                    //}
+
+
+
+                }
+            }
+
+
 
         }
 
@@ -463,27 +537,44 @@ namespace ProjectPOI
 
         private void MostrarBusqueda()
         {
-            UsersLibrary UserSerach = new UsersLibrary();
-            UserSerach.user = SearchContact.Text;
-            DataTable Users = new DataTable();
+            UsersLibrary US = new UsersLibrary();
+            US.user = SearchContact.Text;
+            DataTable UsersSearch = new DataTable();
+            UsersSearch = objUsersAll.SearchUsers(US);
 
-            Users = objUsersAll.SearchUsers(UserSerach);
+           
 
             ContactList.Items.Clear();
 
-            for (int i = 0; i < Users.Rows.Count; i++)
+            for (int i = 0; i < UsersSearch.Rows.Count; i++)
             {
-                if (Users.Rows[i][0].ToString() != objUserU.user)
+                if (UsersSearch.Rows[i][0].ToString() != objUserU.user)
                 {
-                    ContactList.Items.Add(Users.Rows[i][0].ToString());
+                    ContactList.Items.Add(UsersSearch.Rows[i][0].ToString());
                 }
-                else
-                {
-                    objUserU.mail = Users.Rows[i][2].ToString();
-                    UserDisplay.Text = Users.Rows[i][0].ToString();
-                    MailDisplay.Text = Users.Rows[i][2].ToString();
+                //else
+                //{
+                //    objUserU.mail = UsersSearch.Rows[i][2].ToString();
+                //    UserDisplay.Text = UsersSearch.Rows[i][0].ToString();
+                //    MailDisplay.Text = UsersSearch.Rows[i][2].ToString();
 
+                //}
+            }
+
+       
+            for (int i = 0; i < Groups.Rows.Count; i++)
+            {
+                if (Groups.Rows[i][0].ToString() != objUserU.user)
+                {
+                    ContactList.Items.Add(Groups.Rows[i][0].ToString());
                 }
+                //else
+                //{
+                //    objUserU.mail = UsersSearch.Rows[i][2].ToString();
+                //    UserDisplay.Text = UsersSearch.Rows[i][0].ToString();
+                //    MailDisplay.Text = UsersSearch.Rows[i][2].ToString();
+
+                //}
             }
         }
 
@@ -507,14 +598,18 @@ namespace ProjectPOI
         {
 
             //streamW.WriteLine(WriteMessage.Text);
-            string msg = WriteMessage.Text;
-            Messages mensaje = new Messages {remitente = nick, destinatario = selected, mensaje = msg };
-            string result = JsonConvert.SerializeObject(mensaje);
-            streamW.WriteLine(result);
+            if(selected!= "Unknown")
+            {
+                string msg = WriteMessage.Text;
+                Messages mensaje = new Messages {remitente = nick, destinatario = selected, mensaje = msg };
+                string result = JsonConvert.SerializeObject(mensaje);
+                streamW.WriteLine(result);
 
-            GuardarMensajes(msg);
-            streamW.Flush();
-            WriteMessage.Clear();
+                GuardarMensajes(msg);
+                streamW.Flush();
+                WriteMessage.Clear();
+            }
+         
         }
 
 

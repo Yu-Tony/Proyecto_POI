@@ -12,5 +12,6 @@ namespace Users
         public string destinatario { get; set; }
         public string mensaje { get; set; }
         public string grupo { get; set; }
+        public DateTime NowTime { get; set; }
     }
 }
