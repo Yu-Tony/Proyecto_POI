@@ -65,7 +65,6 @@ namespace ServerPOI
                 //y agregar al listado
                 list.Add(connect);
                 Console.WriteLine(connect.nick + " se ha conectado");
-
                 //para un buscador
                 Thread thread = new Thread(EscucharConexion);
                 thread.Start();
@@ -77,6 +76,7 @@ namespace ServerPOI
         {
             Connection hcon = connect; //hconection
 
+            
 
             //ver si la conexion se pudo realizar o no
             do
@@ -87,7 +87,8 @@ namespace ServerPOI
                     Console.WriteLine(tmp);
                     //mostar el listado de los datos leidos
 
-                  
+                   
+
                     foreach (Connection c in list)
                     {
                         //condicion

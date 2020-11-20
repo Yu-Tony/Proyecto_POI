@@ -37,3 +37,4 @@ C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\ProjectPOI\obj\D
 C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\ProjectPOI\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\ProjectPOI\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\ProjectPOI\obj\Debug\ProjectPOI.Form2.resources
+C:\Users\Nahomi Soto\source\repos\7 POI\Proyecto_POI\ProjectPOI\ProjectPOI\obj\Debug\ProjectPOI.Form3.resources

@@ -57,6 +57,33 @@ namespace Data
             SqlCommand cmd = new SqlCommand("Search_Group", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@keyWord", obj.NombreGrupo);
+            cmd.Parameters.AddWithValue("@User", obj.NombrePersona);
+            SqlDataAdapter dataAd = new SqlDataAdapter(cmd);
+            DataTable dataTa = new DataTable();
+            dataAd.Fill(dataTa);
+            return dataTa;
+
+        }
+
+        public DataTable BorrarDeGrupo(Groups obj)
+        {
+            SqlCommand cmd = new SqlCommand("Leave_Group", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@NomGrup", obj.NombreGrupo);
+            cmd.Parameters.AddWithValue("@NomPers", obj.NombrePersona);
+            SqlDataAdapter dataAd = new SqlDataAdapter(cmd);
+            DataTable dataTa = new DataTable();
+            dataAd.Fill(dataTa);
+            return dataTa;
+
+        }
+
+        public DataTable AgregarAGrupo(Groups obj)
+        {
+            SqlCommand cmd = new SqlCommand("Add_Member", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@NomGrup", obj.NombreGrupo);
+            cmd.Parameters.AddWithValue("@NomPers", obj.NombrePersona);
             SqlDataAdapter dataAd = new SqlDataAdapter(cmd);
             DataTable dataTa = new DataTable();
             dataAd.Fill(dataTa);

@@ -46,16 +46,15 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.Carousel = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.RightPanel = new System.Windows.Forms.Button();
+            this.LeftPanel = new System.Windows.Forms.Button();
             this.Send_Button = new System.Windows.Forms.Button();
             this.listBoxMessages = new System.Windows.Forms.ListBox();
             this.Emoji_Button = new System.Windows.Forms.Button();
             this.File_Button = new System.Windows.Forms.Button();
             this.WriteMessage = new System.Windows.Forms.TextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.SalirGrupo = new System.Windows.Forms.Button();
             this.CreateGroup = new System.Windows.Forms.Button();
-            this.RefreshContacts = new System.Windows.Forms.Button();
-            this.SearchContact = new System.Windows.Forms.TextBox();
-            this.ContactList = new System.Windows.Forms.ListBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.UserDisplay = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -65,20 +64,30 @@
             this.SaveInfo_Button = new System.Windows.Forms.Button();
             this.DeleteUser = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.CloseRightPanel = new System.Windows.Forms.Button();
             this.EditPassword_Button = new System.Windows.Forms.Button();
             this.PasswordDisplay2 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.PasswordDisplay1 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.SalirGrupo = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.AddMember = new System.Windows.Forms.Button();
+            this.BackGroupConfig = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.ContactList = new System.Windows.Forms.ListBox();
+            this.CloseLeftPanel = new System.Windows.Forms.Button();
+            this.GroupOptions = new System.Windows.Forms.Button();
+            this.RefreshContacts = new System.Windows.Forms.Button();
+            this.SearchContact = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Carousel)).BeginInit();
             this.panel4.SuspendLayout();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // Sing_In_Chng
@@ -221,7 +230,7 @@
             this.panel2.Controls.Add(this.Carousel);
             this.panel2.Location = new System.Drawing.Point(567, -4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(588, 561);
+            this.panel2.Size = new System.Drawing.Size(617, 561);
             this.panel2.TabIndex = 14;
             // 
             // Carousel
@@ -236,20 +245,42 @@
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.Brown;
+            this.panel4.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel4.Controls.Add(this.RightPanel);
+            this.panel4.Controls.Add(this.LeftPanel);
             this.panel4.Controls.Add(this.Send_Button);
             this.panel4.Controls.Add(this.listBoxMessages);
             this.panel4.Controls.Add(this.Emoji_Button);
             this.panel4.Controls.Add(this.File_Button);
             this.panel4.Controls.Add(this.WriteMessage);
-            this.panel4.Location = new System.Drawing.Point(246, 0);
+            this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(684, 561);
+            this.panel4.Size = new System.Drawing.Size(1184, 561);
             this.panel4.TabIndex = 29;
+            // 
+            // RightPanel
+            // 
+            this.RightPanel.Location = new System.Drawing.Point(1072, 192);
+            this.RightPanel.Name = "RightPanel";
+            this.RightPanel.Size = new System.Drawing.Size(75, 192);
+            this.RightPanel.TabIndex = 36;
+            this.RightPanel.Text = "button2";
+            this.RightPanel.UseVisualStyleBackColor = true;
+            this.RightPanel.Click += new System.EventHandler(this.RightPanel_Click);
+            // 
+            // LeftPanel
+            // 
+            this.LeftPanel.Location = new System.Drawing.Point(24, 192);
+            this.LeftPanel.Name = "LeftPanel";
+            this.LeftPanel.Size = new System.Drawing.Size(75, 192);
+            this.LeftPanel.TabIndex = 35;
+            this.LeftPanel.Text = "button1";
+            this.LeftPanel.UseVisualStyleBackColor = true;
+            this.LeftPanel.Click += new System.EventHandler(this.LeftPanel_Click);
             // 
             // Send_Button
             // 
-            this.Send_Button.Location = new System.Drawing.Point(449, 535);
+            this.Send_Button.Location = new System.Drawing.Point(721, 535);
             this.Send_Button.Name = "Send_Button";
             this.Send_Button.Size = new System.Drawing.Size(63, 19);
             this.Send_Button.TabIndex = 34;
@@ -262,14 +293,15 @@
             this.listBoxMessages.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.listBoxMessages.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxMessages.FormattingEnabled = true;
-            this.listBoxMessages.Location = new System.Drawing.Point(24, 88);
+            this.listBoxMessages.Location = new System.Drawing.Point(296, 88);
             this.listBoxMessages.Name = "listBoxMessages";
             this.listBoxMessages.Size = new System.Drawing.Size(626, 442);
             this.listBoxMessages.TabIndex = 33;
+            this.listBoxMessages.SelectedIndexChanged += new System.EventHandler(this.listBoxMessages_SelectedIndexChanged);
             // 
             // Emoji_Button
             // 
-            this.Emoji_Button.Location = new System.Drawing.Point(587, 534);
+            this.Emoji_Button.Location = new System.Drawing.Point(859, 534);
             this.Emoji_Button.Name = "Emoji_Button";
             this.Emoji_Button.Size = new System.Drawing.Size(63, 19);
             this.Emoji_Button.TabIndex = 32;
@@ -279,7 +311,7 @@
             // 
             // File_Button
             // 
-            this.File_Button.Location = new System.Drawing.Point(518, 535);
+            this.File_Button.Location = new System.Drawing.Point(790, 535);
             this.File_Button.Name = "File_Button";
             this.File_Button.Size = new System.Drawing.Size(63, 19);
             this.File_Button.TabIndex = 31;
@@ -289,59 +321,30 @@
             // 
             // WriteMessage
             // 
-            this.WriteMessage.Location = new System.Drawing.Point(23, 534);
+            this.WriteMessage.Location = new System.Drawing.Point(295, 534);
             this.WriteMessage.Name = "WriteMessage";
             this.WriteMessage.Size = new System.Drawing.Size(420, 20);
             this.WriteMessage.TabIndex = 29;
             // 
-            // panel3
+            // SalirGrupo
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ControlText;
-            this.panel3.Controls.Add(this.SalirGrupo);
-            this.panel3.Controls.Add(this.CreateGroup);
-            this.panel3.Controls.Add(this.RefreshContacts);
-            this.panel3.Controls.Add(this.SearchContact);
-            this.panel3.Controls.Add(this.ContactList);
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(259, 561);
-            this.panel3.TabIndex = 28;
+            this.SalirGrupo.Location = new System.Drawing.Point(80, 328);
+            this.SalirGrupo.Name = "SalirGrupo";
+            this.SalirGrupo.Size = new System.Drawing.Size(104, 40);
+            this.SalirGrupo.TabIndex = 5;
+            this.SalirGrupo.Text = "Salir del grupo";
+            this.SalirGrupo.UseVisualStyleBackColor = true;
+            this.SalirGrupo.Click += new System.EventHandler(this.SalirGrupo_Click);
             // 
             // CreateGroup
             // 
-            this.CreateGroup.Location = new System.Drawing.Point(16, 520);
+            this.CreateGroup.Location = new System.Drawing.Point(80, 144);
             this.CreateGroup.Name = "CreateGroup";
-            this.CreateGroup.Size = new System.Drawing.Size(96, 27);
+            this.CreateGroup.Size = new System.Drawing.Size(104, 40);
             this.CreateGroup.TabIndex = 4;
             this.CreateGroup.Text = "Crear Grupo";
             this.CreateGroup.UseVisualStyleBackColor = true;
             this.CreateGroup.Click += new System.EventHandler(this.CreateGroup_Click);
-            // 
-            // RefreshContacts
-            // 
-            this.RefreshContacts.Location = new System.Drawing.Point(198, 40);
-            this.RefreshContacts.Name = "RefreshContacts";
-            this.RefreshContacts.Size = new System.Drawing.Size(34, 23);
-            this.RefreshContacts.TabIndex = 3;
-            this.RefreshContacts.Text = "button1";
-            this.RefreshContacts.UseVisualStyleBackColor = true;
-            this.RefreshContacts.Click += new System.EventHandler(this.RefreshContacts_Click);
-            // 
-            // SearchContact
-            // 
-            this.SearchContact.Location = new System.Drawing.Point(12, 42);
-            this.SearchContact.Name = "SearchContact";
-            this.SearchContact.Size = new System.Drawing.Size(181, 20);
-            this.SearchContact.TabIndex = 2;
-            // 
-            // ContactList
-            // 
-            this.ContactList.FormattingEnabled = true;
-            this.ContactList.Location = new System.Drawing.Point(11, 77);
-            this.ContactList.Name = "ContactList";
-            this.ContactList.Size = new System.Drawing.Size(221, 433);
-            this.ContactList.TabIndex = 1;
-            this.ContactList.SelectedIndexChanged += new System.EventHandler(this.ContactList_SelectedIndexChanged);
             // 
             // pictureBox1
             // 
@@ -427,7 +430,8 @@
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.MediumPurple;
+            this.panel5.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel5.Controls.Add(this.CloseRightPanel);
             this.panel5.Controls.Add(this.EditPassword_Button);
             this.panel5.Controls.Add(this.PasswordDisplay2);
             this.panel5.Controls.Add(this.label8);
@@ -441,10 +445,20 @@
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.UserDisplay);
             this.panel5.Controls.Add(this.pictureBox1);
-            this.panel5.Location = new System.Drawing.Point(920, 0);
+            this.panel5.Location = new System.Drawing.Point(1192, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(231, 561);
+            this.panel5.Size = new System.Drawing.Size(239, 561);
             this.panel5.TabIndex = 30;
+            // 
+            // CloseRightPanel
+            // 
+            this.CloseRightPanel.Location = new System.Drawing.Point(8, 256);
+            this.CloseRightPanel.Name = "CloseRightPanel";
+            this.CloseRightPanel.Size = new System.Drawing.Size(16, 100);
+            this.CloseRightPanel.TabIndex = 14;
+            this.CloseRightPanel.Text = "button4";
+            this.CloseRightPanel.UseVisualStyleBackColor = true;
+            this.CloseRightPanel.Click += new System.EventHandler(this.CloseRightPanel_Click);
             // 
             // EditPassword_Button
             // 
@@ -497,24 +511,107 @@
             this.timer1.Interval = 3000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // SalirGrupo
+            // panel6
             // 
-            this.SalirGrupo.Location = new System.Drawing.Point(136, 520);
-            this.SalirGrupo.Name = "SalirGrupo";
-            this.SalirGrupo.Size = new System.Drawing.Size(96, 27);
-            this.SalirGrupo.TabIndex = 5;
-            this.SalirGrupo.Text = "Salir del grupo";
-            this.SalirGrupo.UseVisualStyleBackColor = true;
+            this.panel6.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel6.Controls.Add(this.AddMember);
+            this.panel6.Controls.Add(this.BackGroupConfig);
+            this.panel6.Controls.Add(this.CreateGroup);
+            this.panel6.Controls.Add(this.SalirGrupo);
+            this.panel6.Location = new System.Drawing.Point(-304, -8);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(256, 576);
+            this.panel6.TabIndex = 31;
+            // 
+            // AddMember
+            // 
+            this.AddMember.Location = new System.Drawing.Point(80, 232);
+            this.AddMember.Name = "AddMember";
+            this.AddMember.Size = new System.Drawing.Size(104, 40);
+            this.AddMember.TabIndex = 8;
+            this.AddMember.Text = "Añadir Integrante";
+            this.AddMember.UseVisualStyleBackColor = true;
+            this.AddMember.Click += new System.EventHandler(this.AddMember_Click);
+            // 
+            // BackGroupConfig
+            // 
+            this.BackGroupConfig.Location = new System.Drawing.Point(96, 528);
+            this.BackGroupConfig.Name = "BackGroupConfig";
+            this.BackGroupConfig.Size = new System.Drawing.Size(75, 23);
+            this.BackGroupConfig.TabIndex = 6;
+            this.BackGroupConfig.Text = "<";
+            this.BackGroupConfig.UseVisualStyleBackColor = true;
+            this.BackGroupConfig.Click += new System.EventHandler(this.BackGroupConfig_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel3.Controls.Add(this.ContactList);
+            this.panel3.Controls.Add(this.CloseLeftPanel);
+            this.panel3.Controls.Add(this.GroupOptions);
+            this.panel3.Controls.Add(this.RefreshContacts);
+            this.panel3.Controls.Add(this.SearchContact);
+            this.panel3.Location = new System.Drawing.Point(-288, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(272, 561);
+            this.panel3.TabIndex = 32;
+            // 
+            // ContactList
+            // 
+            this.ContactList.FormattingEnabled = true;
+            this.ContactList.Location = new System.Drawing.Point(16, 72);
+            this.ContactList.Name = "ContactList";
+            this.ContactList.Size = new System.Drawing.Size(216, 446);
+            this.ContactList.TabIndex = 8;
+            this.ContactList.SelectedIndexChanged += new System.EventHandler(this.ContactList_SelectedIndexChanged_);
+            // 
+            // CloseLeftPanel
+            // 
+            this.CloseLeftPanel.Location = new System.Drawing.Point(240, 240);
+            this.CloseLeftPanel.Name = "CloseLeftPanel";
+            this.CloseLeftPanel.Size = new System.Drawing.Size(16, 100);
+            this.CloseLeftPanel.TabIndex = 7;
+            this.CloseLeftPanel.Text = "button3";
+            this.CloseLeftPanel.UseVisualStyleBackColor = true;
+            this.CloseLeftPanel.Click += new System.EventHandler(this.CloseLeftPanel_Click_1);
+            // 
+            // GroupOptions
+            // 
+            this.GroupOptions.Location = new System.Drawing.Point(56, 528);
+            this.GroupOptions.Name = "GroupOptions";
+            this.GroupOptions.Size = new System.Drawing.Size(136, 23);
+            this.GroupOptions.TabIndex = 6;
+            this.GroupOptions.Text = "Configuración de Grupo";
+            this.GroupOptions.UseVisualStyleBackColor = true;
+            this.GroupOptions.Click += new System.EventHandler(this.GroupOptions_Click_1);
+            // 
+            // RefreshContacts
+            // 
+            this.RefreshContacts.Location = new System.Drawing.Point(198, 40);
+            this.RefreshContacts.Name = "RefreshContacts";
+            this.RefreshContacts.Size = new System.Drawing.Size(34, 23);
+            this.RefreshContacts.TabIndex = 3;
+            this.RefreshContacts.Text = "button1";
+            this.RefreshContacts.UseVisualStyleBackColor = true;
+            this.RefreshContacts.Click += new System.EventHandler(this.RefreshContacts_Click_1);
+            // 
+            // SearchContact
+            // 
+            this.SearchContact.Location = new System.Drawing.Point(12, 42);
+            this.SearchContact.Name = "SearchContact";
+            this.SearchContact.Size = new System.Drawing.Size(181, 20);
+            this.SearchContact.TabIndex = 2;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
-            this.ClientSize = new System.Drawing.Size(1153, 561);
+            this.ClientSize = new System.Drawing.Size(1179, 561);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -522,17 +619,19 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosing += Form1_FormClosing;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Carousel)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -555,8 +654,6 @@
         private System.Windows.Forms.Button Emoji_Button;
         private System.Windows.Forms.Button File_Button;
         private System.Windows.Forms.TextBox WriteMessage;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.ListBox ContactList;
         private System.Windows.Forms.Button Send_Button;
         private System.Windows.Forms.TextBox Mail_LogIn;
         private System.Windows.Forms.Label label4;
@@ -569,8 +666,6 @@
         private System.Windows.Forms.Button SaveInfo_Button;
         private System.Windows.Forms.Button DeleteUser;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button RefreshContacts;
-        private System.Windows.Forms.TextBox SearchContact;
         private System.Windows.Forms.TextBox PasswordDisplay2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -580,6 +675,18 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button CreateGroup;
         private System.Windows.Forms.Button SalirGrupo;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button AddMember;
+        private System.Windows.Forms.Button BackGroupConfig;
+        private System.Windows.Forms.Button RightPanel;
+        private System.Windows.Forms.Button LeftPanel;
+        private System.Windows.Forms.Button CloseRightPanel;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button CloseLeftPanel;
+        private System.Windows.Forms.Button GroupOptions;
+        private System.Windows.Forms.Button RefreshContacts;
+        private System.Windows.Forms.TextBox SearchContact;
+        private System.Windows.Forms.ListBox ContactList;
     }
 }
 

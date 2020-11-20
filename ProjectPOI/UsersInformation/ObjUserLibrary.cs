@@ -82,6 +82,16 @@ namespace UsersInformation
             return objG.TraerGrupo(_objU);
         }
 
+        public DataTable DeleteFromGroup(Groups _objU)
+        {
+            return objG.BorrarDeGrupo(_objU);
+        }
+
+        public DataTable AddToGroup(Groups _objU)
+        {
+            return objG.AgregarAGrupo(_objU);
+        }
+
 
 
 

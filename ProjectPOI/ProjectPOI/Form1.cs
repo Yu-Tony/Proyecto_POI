@@ -60,7 +60,7 @@ namespace ProjectPOI
         /// <summary>
         /// Todos los grupos que tiene ese usuario
         /// </summary>
-        DataTable Groups = new DataTable();
+        DataTable GroupsDT = new DataTable();
 
         //Bool para ver si se cambiara la contrase;a o no
         bool Pass = false;
@@ -83,21 +83,25 @@ namespace ProjectPOI
             {
                 try
                 {
+                    
+
                     string read = streamR.ReadLine();
                     Messages newMensaje = JsonConvert.DeserializeObject<Messages>(read);
+                    string gp = "";
 
                     bool IsInGroup = false;
-                    for (int i = 0; i < Groups.Rows.Count; i++)
+                    for (int i = 0; i < GroupsDT.Rows.Count; i++)
                     {
 
-                        if(Groups.Rows[i][0].ToString() == selected)
+                        if(GroupsDT.Rows[i][0].ToString() == selected)
                         {
                             IsInGroup = true;
+                           
                         }
 
                     }
 
-                    if ((newMensaje.destinatario == nick && newMensaje.remitente == selected) || newMensaje.remitente == nick || IsInGroup==true)
+                    if ((newMensaje.destinatario == nick && newMensaje.remitente == selected) || newMensaje.remitente == nick || (IsInGroup==true && newMensaje.grupo!=null))
                     {
                         string Enviado = newMensaje.remitente + " : " + newMensaje.mensaje;
                         this.Invoke(new GiveItem(AddItem), Enviado);
@@ -154,11 +158,11 @@ namespace ProjectPOI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            listBoxMessages.Location = new Point(-700, 68);
-            WriteMessage.Location = new Point(-700, 523);
-            Send_Button.Location = new Point(-700, 523);
-            File_Button.Location = new Point(-700, 523);
-            Emoji_Button.Location = new Point(-700, 523);
+            //listBoxMessages.Location = new Point(-700, 68);
+            //WriteMessage.Location = new Point(-700, 523);
+            //Send_Button.Location = new Point(-700, 523);
+            //File_Button.Location = new Point(-700, 523);
+            //Emoji_Button.Location = new Point(-700, 523);
             label3.Location = new Point(130, -40);
             Password2_Login.Location=new Point(130, -20);
             SignIn_Button.Location = new Point(-80, 430);
@@ -166,10 +170,10 @@ namespace ProjectPOI
             label4.Location = new Point(130, -20);
             Mail_LogIn.Location = new Point(130, -20);
 
-            panel3.Location = new Point(-300, 0);
-            panel4.Location = new Point(-1000, 0);
-            panel5.Location = new Point(-300, 0);
+            panel4.Location = new Point(-1500, 0);
+            
             ContactList.Location = new Point(0, 70);
+           
 
             label7.Location = new Point(40, -20);
             PasswordDisplay1.Location = new Point(40,-20);
@@ -392,15 +396,14 @@ namespace ProjectPOI
             trans.add(panel1, "Left", 1200);
             trans.add(panel2, "Left", 1000);
 
-            trans.add(listBoxMessages, "Left", 25);
-            trans.add(WriteMessage, "Left", 25);
-            trans.add(Send_Button, "Left", 455);
-            trans.add(File_Button, "Left", 520);
-            trans.add(Emoji_Button, "Left", 585);
-            trans.add(panel3, "Left", 0);
-            trans.add(ContactList, "Left", 15);
-            trans.add(panel4, "Left", 250);
-            trans.add(panel5, "Left", 930);
+            //trans.add(listBoxMessages, "Left", 25);
+            //trans.add(WriteMessage, "Left", 25);
+            //trans.add(Send_Button, "Left", 455);
+            //trans.add(File_Button, "Left", 520);
+            //trans.add(Emoji_Button, "Left", 585);
+           
+            trans.add(panel4, "Left", 0);
+           
 
             trans.run();
         }
@@ -438,7 +441,7 @@ namespace ProjectPOI
             Groups GG = new Groups();
             GG.NombrePersona = objUserU.user;
             
-            Groups = GetGroups.GetUserGroups(GG);
+            GroupsDT = GetGroups.GetUserGroups(GG);
 
             ContactList.Items.Clear();
 
@@ -457,10 +460,10 @@ namespace ProjectPOI
                 }
             }
 
-            for (int i = 0; i < Groups.Rows.Count; i++)
+            for (int i = 0; i < GroupsDT.Rows.Count; i++)
             {
 
-                ContactList.Items.Add(Groups.Rows[i][0].ToString());
+                ContactList.Items.Add(GroupsDT.Rows[i][0].ToString());
 
             }
         }
@@ -488,9 +491,9 @@ namespace ProjectPOI
                 }
             }
 
-            for (int i = 0; i < Groups.Rows.Count; i++)
+            for (int i = 0; i < GroupsDT.Rows.Count; i++)
             {
-                if (Groups.Rows[i][0].ToString() == selected)
+                if (GroupsDT.Rows[i][0].ToString() == selected)
                 {
                     //DataTable UsersFromGrp = new DataTable();
                     //Groups UsersG = new Groups();
@@ -552,29 +555,27 @@ namespace ProjectPOI
                 {
                     ContactList.Items.Add(UsersSearch.Rows[i][0].ToString());
                 }
-                //else
-                //{
-                //    objUserU.mail = UsersSearch.Rows[i][2].ToString();
-                //    UserDisplay.Text = UsersSearch.Rows[i][0].ToString();
-                //    MailDisplay.Text = UsersSearch.Rows[i][2].ToString();
+                else
+                {
+                    objUserU.mail = UsersSearch.Rows[i][2].ToString();
+                    UserDisplay.Text = UsersSearch.Rows[i][0].ToString();
+                    MailDisplay.Text = UsersSearch.Rows[i][2].ToString();
 
-                //}
+                }
             }
 
-       
-            for (int i = 0; i < Groups.Rows.Count; i++)
-            {
-                if (Groups.Rows[i][0].ToString() != objUserU.user)
-                {
-                    ContactList.Items.Add(Groups.Rows[i][0].ToString());
-                }
-                //else
-                //{
-                //    objUserU.mail = UsersSearch.Rows[i][2].ToString();
-                //    UserDisplay.Text = UsersSearch.Rows[i][0].ToString();
-                //    MailDisplay.Text = UsersSearch.Rows[i][2].ToString();
+            Groups GS = new Groups();
+            GS.NombreGrupo = SearchContact.Text;
+            GS.NombrePersona = objUserU.user;
+            DataTable GpSearch = new DataTable();
+            GpSearch = objUsersAll.SearchGroup(GS);
 
-                //}
+            for (int i = 0; i < GpSearch.Rows.Count; i++)
+            {
+                if (GpSearch.Rows[i][0].ToString() != objUserU.user)
+                {
+                    ContactList.Items.Add(GpSearch.Rows[i][0].ToString());
+                }
             }
         }
 
@@ -749,7 +750,7 @@ namespace ProjectPOI
 
 
 
-        private void RefreshContacts_Click(object sender, EventArgs e)
+        private void RefreshContacts_Click_1(object sender, EventArgs e)
         {
             if(SearchContact.Text!="")
             {
@@ -821,7 +822,7 @@ namespace ProjectPOI
             LoadImage();
         }
 
-        private void ContactList_SelectedIndexChanged(object sender, EventArgs e)
+        private void ContactList_SelectedIndexChanged_(object sender, EventArgs e)
         {
             selected = ContactList.GetItemText(ContactList.SelectedItem);
             listBoxMessages.Items.Clear();
@@ -832,9 +833,147 @@ namespace ProjectPOI
 
         private void CreateGroup_Click(object sender, EventArgs e)
         {
-            Form2 GW = new Form2(objUserU);
+            Form2 GW = new Form2();
             GW.ShowDialog();
+            MostrarUsuarios();
         }
+
+        private void SalirGrupo_Click(object sender, EventArgs e)
+        {
+            bool IsInGroup = false;
+            for (int i = 0; i < GroupsDT.Rows.Count; i++)
+            {
+
+                if (GroupsDT.Rows[i][0].ToString() == selected)
+                {
+                    IsInGroup = true;
+
+                }
+
+            }
+
+            if(IsInGroup==true)
+            {
+                DialogResult dialogResult = MessageBox.Show("¿Desea salir de este grupo?", "Message", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    DataTable dataTa = new DataTable();
+                    Groups GruposAct = new Groups();
+                    GruposAct.NombreGrupo = selected;
+                    GruposAct.NombrePersona = nick;
+                    GetGroups.DeleteFromGroup(GruposAct);
+
+                    selected = "Unknown";
+                    MostrarUsuarios();
+
+                    ContactList.Items.Clear();
+
+                }
+            }
+           
+        }
+
+        private void GroupOptions_Click_1(object sender, EventArgs e)
+        {
+            Transition trans = new Transition(new TransitionType_EaseInEaseOut(800));
+            trans.add(panel6, "Left", 0);
+           
+            trans.run();
+
+
+        }
+
+        private void BackGroupConfig_Click(object sender, EventArgs e)
+        {
+            Transition trans = new Transition(new TransitionType_EaseInEaseOut(800));
+            trans.add(panel6, "Left", -500);
+
+            trans.run();
+
+        }
+
+        private void AddMember_Click(object sender, EventArgs e)
+        {
+            bool IsInGroup = false;
+            for (int i = 0; i < GroupsDT.Rows.Count; i++)
+            {
+
+                if (GroupsDT.Rows[i][0].ToString() == selected)
+                {
+                    IsInGroup = true;
+
+                }
+
+            }
+
+            if (IsInGroup == true)
+            {
+                
+               Form3 GW = new Form3(Users, selected);
+               GW.ShowDialog();
+               MostrarUsuarios();
+               ContactList.Items.Clear();
+
+            }
+
+           
+
+        }
+
+        private void LeftPanel_Click(object sender, EventArgs e)
+        {
+            Transition trans = new Transition(new TransitionType_EaseInEaseOut(800));
+            trans.add(panel3, "Left", 0);
+            trans.add(ContactList, "Left", 15);
+
+            trans.run();
+
+        }
+
+        private void RightPanel_Click(object sender, EventArgs e)
+        {
+            Transition trans = new Transition(new TransitionType_EaseInEaseOut(800));
+            trans.add(panel5, "Left", 950);
+
+            trans.run();
+        }
+
+
+        private void CloseRightPanel_Click(object sender, EventArgs e)
+        {
+            Transition trans = new Transition(new TransitionType_EaseInEaseOut(800));
+            trans.add(panel5, "Left", 1600);
+
+            trans.run();
+          
+
+        }
+
+        private void CloseLeftPanel_Click_1(object sender, EventArgs e)
+        {
+            Transition trans = new Transition(new TransitionType_EaseInEaseOut(800));
+            trans.add(panel3, "Left", -500);
+
+            trans.run();
+        }
+
+        private void listBoxMessages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+
+            System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
+            messageBoxCS.AppendFormat("{0} = {1}", "CloseReason", e.CloseReason);
+            messageBoxCS.AppendLine();
+            messageBoxCS.AppendFormat("{0} = {1}", "Cancel", e.Cancel);
+            messageBoxCS.AppendLine();
+            MessageBox.Show(messageBoxCS.ToString(), "FormClosing Event");
+        }
+
+
     }
 
 

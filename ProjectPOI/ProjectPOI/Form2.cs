@@ -15,15 +15,13 @@ namespace ProjectPOI
 {
     public partial class Form2 : Form
     {
-        UsersLibrary objUserU = new UsersLibrary();
         //User login para usar la funcion
         ObjUserLibrary objUsersAll = new ObjUserLibrary();
         ObjUserLibrary objGroup = new ObjUserLibrary();
 
-        public Form2(UsersLibrary objUser)
+        public Form2()
         {
             InitializeComponent();
-            objUserU = objUser;
             MostrarUsuarios();
         }
 
@@ -42,10 +40,10 @@ namespace ProjectPOI
 
             for (int i = 0; i < Users.Rows.Count; i++)
             {
-                if (Users.Rows[i][0].ToString() != objUserU.user)
-                {
+                //if (Users.Rows[i][0].ToString() != objUserU.user)
+                //{
                     ChatMembersIn.Items.Add(Users.Rows[i][0].ToString());
-                }
+                //}
             }
         }
 
@@ -71,14 +69,14 @@ namespace ProjectPOI
                     Messages = objGroup.CreateGroups(Grupo);
 
                 }
+
                 this.Close();
             }
-           
 
-            
-           
-            
+        }
 
+        private void Form2_Load(object sender, EventArgs e)
+        {
 
         }
     }
