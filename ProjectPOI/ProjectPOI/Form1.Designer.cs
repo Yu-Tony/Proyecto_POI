@@ -75,7 +75,9 @@
             this.AddMember = new System.Windows.Forms.Button();
             this.BackGroupConfig = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.ContactList = new System.Windows.Forms.ListBox();
+            this.listViewContact = new System.Windows.Forms.ListView();
+            this.UsuariosList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.EstadoList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CloseLeftPanel = new System.Windows.Forms.Button();
             this.GroupOptions = new System.Windows.Forms.Button();
             this.RefreshContacts = new System.Windows.Forms.Button();
@@ -293,9 +295,9 @@
             this.listBoxMessages.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.listBoxMessages.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxMessages.FormattingEnabled = true;
-            this.listBoxMessages.Location = new System.Drawing.Point(296, 88);
+            this.listBoxMessages.Location = new System.Drawing.Point(296, 24);
             this.listBoxMessages.Name = "listBoxMessages";
-            this.listBoxMessages.Size = new System.Drawing.Size(626, 442);
+            this.listBoxMessages.Size = new System.Drawing.Size(626, 494);
             this.listBoxMessages.TabIndex = 33;
             this.listBoxMessages.SelectedIndexChanged += new System.EventHandler(this.listBoxMessages_SelectedIndexChanged);
             // 
@@ -325,6 +327,7 @@
             this.WriteMessage.Name = "WriteMessage";
             this.WriteMessage.Size = new System.Drawing.Size(420, 20);
             this.WriteMessage.TabIndex = 29;
+            this.WriteMessage.TextChanged += new System.EventHandler(this.WriteMessage_TextChanged);
             // 
             // SalirGrupo
             // 
@@ -386,6 +389,7 @@
             this.MailDisplay.ReadOnly = true;
             this.MailDisplay.Size = new System.Drawing.Size(166, 20);
             this.MailDisplay.TabIndex = 3;
+            this.MailDisplay.TextChanged += new System.EventHandler(this.MailDisplay_TextChanged);
             // 
             // label6
             // 
@@ -546,7 +550,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.AliceBlue;
-            this.panel3.Controls.Add(this.ContactList);
+            this.panel3.Controls.Add(this.listViewContact);
             this.panel3.Controls.Add(this.CloseLeftPanel);
             this.panel3.Controls.Add(this.GroupOptions);
             this.panel3.Controls.Add(this.RefreshContacts);
@@ -556,14 +560,31 @@
             this.panel3.Size = new System.Drawing.Size(272, 561);
             this.panel3.TabIndex = 32;
             // 
-            // ContactList
+            // listViewContact
             // 
-            this.ContactList.FormattingEnabled = true;
-            this.ContactList.Location = new System.Drawing.Point(16, 72);
-            this.ContactList.Name = "ContactList";
-            this.ContactList.Size = new System.Drawing.Size(216, 446);
-            this.ContactList.TabIndex = 8;
-            this.ContactList.SelectedIndexChanged += new System.EventHandler(this.ContactList_SelectedIndexChanged_);
+            this.listViewContact.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.UsuariosList,
+            this.EstadoList});
+            this.listViewContact.HideSelection = false;
+            this.listViewContact.Location = new System.Drawing.Point(16, 72);
+            this.listViewContact.Name = "listViewContact";
+            this.listViewContact.Size = new System.Drawing.Size(200, 440);
+            this.listViewContact.TabIndex = 10;
+            this.listViewContact.UseCompatibleStateImageBehavior = false;
+            this.listViewContact.View = System.Windows.Forms.View.Details;
+            this.listViewContact.SelectedIndexChanged += new System.EventHandler(this.listViewContact_SelectedIndexChanged);
+            // 
+            // UsuariosList
+            // 
+            this.UsuariosList.Tag = "1";
+            this.UsuariosList.Text = "Usuarios";
+            this.UsuariosList.Width = 100;
+            // 
+            // EstadoList
+            // 
+            this.EstadoList.Tag = "1";
+            this.EstadoList.Text = "Estado";
+            this.EstadoList.Width = 100;
             // 
             // CloseLeftPanel
             // 
@@ -686,7 +707,9 @@
         private System.Windows.Forms.Button GroupOptions;
         private System.Windows.Forms.Button RefreshContacts;
         private System.Windows.Forms.TextBox SearchContact;
-        private System.Windows.Forms.ListBox ContactList;
+        private System.Windows.Forms.ListView listViewContact;
+        private System.Windows.Forms.ColumnHeader UsuariosList;
+        private System.Windows.Forms.ColumnHeader EstadoList;
     }
 }
 

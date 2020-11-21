@@ -52,6 +52,11 @@ namespace UsersInformation
             return objU.DelUser(_objU);
         }
 
+        public DataTable EditStatus(UsersLibrary _objU)
+        {
+            return objU.EditarEstado(_objU);
+        }
+
         public DataTable InsertMessages(Messages _objU)
         {
             return objM.InsertMes(_objU);

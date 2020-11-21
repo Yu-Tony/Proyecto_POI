@@ -66,7 +66,10 @@ namespace ProjectPOI
         bool Pass = false;
         bool Conect = false;
 
-
+        private void SomeoneDisconnected(string s)
+        {
+            MostrarUsuarios();
+        }
         private void AddItem(string s)
         {
             listBoxMessages.Items.Add(s);
@@ -83,35 +86,50 @@ namespace ProjectPOI
             {
                 try
                 {
-                    
+
 
                     string read = streamR.ReadLine();
-                    Messages newMensaje = JsonConvert.DeserializeObject<Messages>(read);
-                    string gp = "";
+                    //MessageBox.Show(read);
+                    bool message = false;
 
-                    bool IsInGroup = false;
-                    for (int i = 0; i < GroupsDT.Rows.Count; i++)
-                    {
-
-                        if(GroupsDT.Rows[i][0].ToString() == selected)
+                        if (read != objUserU.user)
                         {
-                            IsInGroup = true;
-                           
+                            this.Invoke(new GiveItem(SomeoneDisconnected), read);
+                        }
+                        else
+                        {
+                            
+
+                            //if (read != objUserU.user)
+                            //{
+                            //    Messages newMensaje = JsonConvert.DeserializeObject<Messages>(read);
+                            //    string gp = "";
+
+                            //    bool IsInGroup = false;
+                            //    for (int i = 0; i < GroupsDT.Rows.Count; i++)
+                            //    {
+
+                            //        if (GroupsDT.Rows[i][0].ToString() == selected)
+                            //        {
+                            //            IsInGroup = true;
+
+                            //        }
+
+                            //    }
+
+                            //    if ((newMensaje.destinatario == nick && newMensaje.remitente == selected) || newMensaje.remitente == nick || (IsInGroup == true && newMensaje.grupo != null))
+                            //    {
+                            //        string Enviado = newMensaje.remitente + " : " + newMensaje.mensaje;
+                            //        this.Invoke(new GiveItem(AddItem), Enviado);
+                            //        //AddItem(Enviado);
+
+                            //    }
+
+
+                            //    // this.Invoke(new GiveItem(AddItem), streamR.ReadLine());
+                            //}
                         }
 
-                    }
-
-                    if ((newMensaje.destinatario == nick && newMensaje.remitente == selected) || newMensaje.remitente == nick || (IsInGroup==true && newMensaje.grupo!=null))
-                    {
-                        string Enviado = newMensaje.remitente + " : " + newMensaje.mensaje;
-                        this.Invoke(new GiveItem(AddItem), Enviado);
-                        //AddItem(Enviado);
-
-                    }
-                        
-
-                    //this.Invoke(new GiveItem(AddItem), streamR.ReadLine());
-                   
                 }
                 catch
                 {
@@ -141,6 +159,10 @@ namespace ProjectPOI
                     streamW.Flush();
 
                     t.Start();
+                    objUserU.status = "Connected";
+                    objUsersAll.EditStatus(objUserU);
+                    streamW.WriteLine(objUserU.user);
+                    streamW.Flush();
                 }
                 else 
                 {
@@ -171,8 +193,8 @@ namespace ProjectPOI
             Mail_LogIn.Location = new Point(130, -20);
 
             panel4.Location = new Point(-1500, 0);
-            
-            ContactList.Location = new Point(0, 70);
+
+            listViewContact.Location = new Point(0, 70);
            
 
             label7.Location = new Point(40, -20);
@@ -417,7 +439,7 @@ namespace ProjectPOI
             trans.add(File_Button, "Left", -1000);
             trans.add(Emoji_Button, "Left", -1000);
             trans.add(panel3, "Left", -1000);
-            trans.add(ContactList, "Left", -1000);
+            trans.add(listViewContact, "Left", -1000);
             trans.add(panel4, "Left", -1000);
             trans.add(panel5, "Left", -1000);
 
@@ -435,7 +457,6 @@ namespace ProjectPOI
         private void MostrarUsuarios()
         {
             //Mostrar usuarios
-          
             Users = objUsersAll.AllUsers();
 
             Groups GG = new Groups();
@@ -443,13 +464,21 @@ namespace ProjectPOI
             
             GroupsDT = GetGroups.GetUserGroups(GG);
 
-            ContactList.Items.Clear();
+            listViewContact.Items.Clear();
+
+           
 
             for (int i = 0; i < Users.Rows.Count; i++)
             {
                 if (Users.Rows[i][0].ToString() != objUserU.user)
                 {
-                    ContactList.Items.Add(Users.Rows[i][0].ToString());
+                    //ContactList.Items.Add(Users.Rows[i][0].ToString() + " : ");
+                    //ConnectedList.Items.Add(Users.Rows[i][3].ToString());
+
+                    string[] row = { Users.Rows[i][0].ToString(), Users.Rows[i][3].ToString()};
+                    var listViewItem = new ListViewItem(row);
+                    listViewContact.Items.Add(listViewItem);
+
                 }
                 else
                 {
@@ -463,7 +492,10 @@ namespace ProjectPOI
             for (int i = 0; i < GroupsDT.Rows.Count; i++)
             {
 
-                ContactList.Items.Add(GroupsDT.Rows[i][0].ToString());
+                //ContactList.Items.Add(GroupsDT.Rows[i][0].ToString());
+                string[] row = { GroupsDT.Rows[i][0].ToString(), "" };
+                var listViewItem = new ListViewItem(row);
+                listViewContact.Items.Add(listViewItem);
 
             }
         }
@@ -545,15 +577,20 @@ namespace ProjectPOI
             DataTable UsersSearch = new DataTable();
             UsersSearch = objUsersAll.SearchUsers(US);
 
-           
 
-            ContactList.Items.Clear();
+
+            listViewContact.Items.Clear();
 
             for (int i = 0; i < UsersSearch.Rows.Count; i++)
             {
                 if (UsersSearch.Rows[i][0].ToString() != objUserU.user)
                 {
-                    ContactList.Items.Add(UsersSearch.Rows[i][0].ToString());
+                    //ContactList.Items.Add(UsersSearch.Rows[i][0].ToString());
+
+
+                    string[] row = { UsersSearch.Rows[i][0].ToString(), UsersSearch.Rows[i][3].ToString() };
+                    var listViewItem = new ListViewItem(row);
+                    listViewContact.Items.Add(listViewItem);
                 }
                 else
                 {
@@ -574,7 +611,11 @@ namespace ProjectPOI
             {
                 if (GpSearch.Rows[i][0].ToString() != objUserU.user)
                 {
-                    ContactList.Items.Add(GpSearch.Rows[i][0].ToString());
+                    //ContactList.Items.Add(GpSearch.Rows[i][0].ToString());
+
+                    string[] row = { GpSearch.Rows[i][0].ToString(), " "};
+                    var listViewItem = new ListViewItem(row);
+                    listViewContact.Items.Add(listViewItem);
                 }
             }
         }
@@ -822,14 +863,14 @@ namespace ProjectPOI
             LoadImage();
         }
 
-        private void ContactList_SelectedIndexChanged_(object sender, EventArgs e)
-        {
-            selected = ContactList.GetItemText(ContactList.SelectedItem);
-            listBoxMessages.Items.Clear();
-            MostrarMensajes();
+        //private void ContactList_SelectedIndexChanged_(object sender, EventArgs e)
+        //{
+        //    selected = ContactList.GetItemText(ContactList.SelectedItem);
+        //    listBoxMessages.Items.Clear();
+        //    MostrarMensajes();
 
 
-        }
+        //}
 
         private void CreateGroup_Click(object sender, EventArgs e)
         {
@@ -866,7 +907,7 @@ namespace ProjectPOI
                     selected = "Unknown";
                     MostrarUsuarios();
 
-                    ContactList.Items.Clear();
+                    listViewContact.Items.Clear();
 
                 }
             }
@@ -912,7 +953,7 @@ namespace ProjectPOI
                Form3 GW = new Form3(Users, selected);
                GW.ShowDialog();
                MostrarUsuarios();
-               ContactList.Items.Clear();
+                listViewContact.Items.Clear();
 
             }
 
@@ -924,7 +965,7 @@ namespace ProjectPOI
         {
             Transition trans = new Transition(new TransitionType_EaseInEaseOut(800));
             trans.add(panel3, "Left", 0);
-            trans.add(ContactList, "Left", 15);
+            trans.add(listViewContact, "Left", 15);
 
             trans.run();
 
@@ -965,15 +1006,50 @@ namespace ProjectPOI
         private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
         {
 
-            System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
-            messageBoxCS.AppendFormat("{0} = {1}", "CloseReason", e.CloseReason);
-            messageBoxCS.AppendLine();
-            messageBoxCS.AppendFormat("{0} = {1}", "Cancel", e.Cancel);
-            messageBoxCS.AppendLine();
-            MessageBox.Show(messageBoxCS.ToString(), "FormClosing Event");
+            //System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
+            //messageBoxCS.AppendFormat("{0} = {1}", "CloseReason", e.CloseReason);
+            //messageBoxCS.AppendLine();
+            //messageBoxCS.AppendFormat("{0} = {1}", "Cancel", e.Cancel);
+            //messageBoxCS.AppendLine();
+            //MessageBox.Show(messageBoxCS.ToString(), "FormClosing Event");
+
+            objUserU.status = "Disconnected";
+            objUsersAll.EditStatus(objUserU);
+            streamW.WriteLine(objUserU.user);
+            streamW.Flush();
+
         }
 
+        private void WriteMessage_TextChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void MailDisplay_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listViewContact_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           //selected = this.listViewContact.SelectedItems[0].Text;
+
+            if (listViewContact.SelectedIndices.Count <= 0)
+            {
+                return;
+            }
+            int intselectedindex = listViewContact.SelectedIndices[0];
+            if (intselectedindex >= 0)
+            {
+                selected = listViewContact.Items[intselectedindex].Text;
+                MostrarMensajes();
+
+
+                //do something
+                //MessageBox.Show(listView1.Items[intselectedindex].Text); 
+            }
+
+        }
     }
 
 

@@ -14,7 +14,7 @@ namespace ServerPOI
     class Servidor_Chat
     {
 
-        
+
         //Permita esperar la conexion del cliente
         private TcpListener server;
         //Promocionar una conexion netre el servidor y el cliente 
@@ -76,7 +76,7 @@ namespace ServerPOI
         {
             Connection hcon = connect; //hconection
 
-            
+
 
             //ver si la conexion se pudo realizar o no
             do
@@ -87,7 +87,7 @@ namespace ServerPOI
                     Console.WriteLine(tmp);
                     //mostar el listado de los datos leidos
 
-                   
+
 
                     foreach (Connection c in list)
                     {

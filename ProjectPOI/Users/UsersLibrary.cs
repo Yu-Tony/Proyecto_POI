@@ -18,6 +18,8 @@ namespace Users
 
         public string pass { get; set; }
 
+        public string status { get; set; }
+
     }
 
 

@@ -95,6 +95,18 @@ namespace LogIn_SingIn
 
         }
 
+        public DataTable EditarEstado(UsersLibrary obj)
+        {
+            SqlCommand cmd = new SqlCommand("Edit_Status", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@user", obj.user);
+            cmd.Parameters.AddWithValue("@status", obj.status);
+            SqlDataAdapter dataAd = new SqlDataAdapter(cmd);
+            DataTable dataTa = new DataTable();
+            dataAd.Fill(dataTa);
+            return dataTa;
+
+        }
 
     }
 }
