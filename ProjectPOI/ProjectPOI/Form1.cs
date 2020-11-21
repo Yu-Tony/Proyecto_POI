@@ -87,48 +87,51 @@ namespace ProjectPOI
                 try
                 {
 
+                 string read = streamR.ReadLine();
+                 //MessageBox.Show(read);
+                 bool message = false;
 
-                    string read = streamR.ReadLine();
-                    //MessageBox.Show(read);
-                    bool message = false;
 
-                        if (read != objUserU.user)
+                    if (read != (objUserU.user + "Disconnected") && read != (objUserU.user + "Connected"))
+                     { 
+                        this.Invoke(new GiveItem(SomeoneDisconnected), read);
+
+                     
+                      if (read.Contains("{") == true)
+                      {
+                          message = true;
+                      }
+
+
+                        if (message == true)
                         {
-                            this.Invoke(new GiveItem(SomeoneDisconnected), read);
+                            Messages newMensaje = JsonConvert.DeserializeObject<Messages>(read);
+                            string gp = "";
+                            bool IsInGroup = false;
+                            for (int i = 0; i < GroupsDT.Rows.Count; i++)
+                            {
+
+                                if (GroupsDT.Rows[i][0].ToString() == selected)
+                                {
+                                    IsInGroup = true;
+
+                                }
+
+                            }
+
+                            if ((newMensaje.destinatario == nick && newMensaje.remitente == selected) || newMensaje.remitente == nick || (IsInGroup == true && newMensaje.grupo != null))
+                            {
+                                string Enviado = newMensaje.remitente + " : " + newMensaje.mensaje;
+                                this.Invoke(new GiveItem(AddItem), Enviado);
+                                //AddItem(Enviado);
+
+                            }
+
+                            // this.Invoke(new GiveItem(AddItem), streamR.ReadLine());
                         }
-                        else
-                        {
-                            
-
-                            //if (read != objUserU.user)
-                            //{
-                            //    Messages newMensaje = JsonConvert.DeserializeObject<Messages>(read);
-                            //    string gp = "";
-
-                            //    bool IsInGroup = false;
-                            //    for (int i = 0; i < GroupsDT.Rows.Count; i++)
-                            //    {
-
-                            //        if (GroupsDT.Rows[i][0].ToString() == selected)
-                            //        {
-                            //            IsInGroup = true;
-
-                            //        }
-
-                            //    }
-
-                            //    if ((newMensaje.destinatario == nick && newMensaje.remitente == selected) || newMensaje.remitente == nick || (IsInGroup == true && newMensaje.grupo != null))
-                            //    {
-                            //        string Enviado = newMensaje.remitente + " : " + newMensaje.mensaje;
-                            //        this.Invoke(new GiveItem(AddItem), Enviado);
-                            //        //AddItem(Enviado);
-
-                            //    }
 
 
-                            //    // this.Invoke(new GiveItem(AddItem), streamR.ReadLine());
-                            //}
-                        }
+                    }
 
                 }
                 catch
@@ -161,7 +164,7 @@ namespace ProjectPOI
                     t.Start();
                     objUserU.status = "Connected";
                     objUsersAll.EditStatus(objUserU);
-                    streamW.WriteLine(objUserU.user);
+                    streamW.WriteLine(objUserU.user+ objUserU.status);
                     streamW.Flush();
                 }
                 else 
@@ -638,13 +641,35 @@ namespace ProjectPOI
         /// </summary>  
         private void Send_Button_Click(object sender, EventArgs e)
         {
+            bool IsInGroup = false;
+            for (int i = 0; i < GroupsDT.Rows.Count; i++)
+            {
+
+                if (GroupsDT.Rows[i][0].ToString() == selected)
+                {
+                    IsInGroup = true;
+
+                }
+
+            }
 
             //streamW.WriteLine(WriteMessage.Text);
-            if(selected!= "Unknown")
+            if (selected!= "Unknown")
             {
                 string msg = WriteMessage.Text;
-                Messages mensaje = new Messages {remitente = nick, destinatario = selected, mensaje = msg };
-                string result = JsonConvert.SerializeObject(mensaje);
+                string result = " ";
+
+                if (IsInGroup==true)
+                {
+                    Messages mensaje = new Messages { remitente = nick, grupo = selected, mensaje = msg };
+                    result = JsonConvert.SerializeObject(mensaje);
+                }
+                else 
+                {
+                    Messages mensaje = new Messages { remitente = nick, destinatario = selected, mensaje = msg };
+                    result = JsonConvert.SerializeObject(mensaje);
+                }
+
                 streamW.WriteLine(result);
 
                 GuardarMensajes(msg);
@@ -1013,10 +1038,14 @@ namespace ProjectPOI
             //messageBoxCS.AppendLine();
             //MessageBox.Show(messageBoxCS.ToString(), "FormClosing Event");
 
-            objUserU.status = "Disconnected";
-            objUsersAll.EditStatus(objUserU);
-            streamW.WriteLine(objUserU.user);
-            streamW.Flush();
+            if(objUserU.user!=null)
+            {
+                objUserU.status = "Disconnected";
+                objUsersAll.EditStatus(objUserU);
+                streamW.WriteLine(objUserU.user + objUserU.status);
+                streamW.Flush();
+            }
+            
 
         }
 
@@ -1042,6 +1071,7 @@ namespace ProjectPOI
             if (intselectedindex >= 0)
             {
                 selected = listViewContact.Items[intselectedindex].Text;
+                listBoxMessages.Items.Clear();
                 MostrarMensajes();
 
 
