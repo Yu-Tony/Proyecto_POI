@@ -20,6 +20,9 @@ using UsersInformation;
 
 using Newtonsoft.Json;
 
+using System.Net.Mail;
+using System.Net;
+
 namespace ProjectPOI
 {
     public partial class Form1 : Form
@@ -34,7 +37,7 @@ namespace ProjectPOI
         static private string nick = "Unknown";
         static private string selected = "Unknown";
 
-       
+
 
 
         //crear enlaces al listbox para agregar info del server
@@ -87,20 +90,20 @@ namespace ProjectPOI
                 try
                 {
 
-                 string read = streamR.ReadLine();
-                 //MessageBox.Show(read);
-                 bool message = false;
+                    string read = streamR.ReadLine();
+                    //MessageBox.Show(read);
+                    bool message = false;
 
 
                     if (read != (objUserU.user + "Disconnected") && read != (objUserU.user + "Connected"))
-                     { 
+                    {
                         this.Invoke(new GiveItem(SomeoneDisconnected), read);
 
-                     
-                      if (read.Contains("{") == true)
-                      {
-                          message = true;
-                      }
+
+                        if (read.Contains("{") == true)
+                        {
+                            message = true;
+                        }
 
 
                         if (message == true)
@@ -122,7 +125,7 @@ namespace ProjectPOI
                             if ((newMensaje.destinatario == nick && newMensaje.remitente == selected) || newMensaje.remitente == nick || (IsInGroup == true && newMensaje.grupo != null))
                             {
                                 string Enviado = newMensaje.remitente + " : " + newMensaje.mensaje;
-                                this.Invoke(new GiveItem(AddItem), Enviado);
+                                this.Invoke(new GiveItem(ConvertText), Enviado);
                                 //AddItem(Enviado);
 
                             }
@@ -142,13 +145,13 @@ namespace ProjectPOI
             }
         }
 
-        void _Connect() 
+        void _Connect()
         {
-            try 
+            try
             {
 
                 client.Connect("127.0.0.1", 8000);
-        
+
                 if (client.Connected)
                 {
                     Thread t = new Thread(Listen);
@@ -164,15 +167,15 @@ namespace ProjectPOI
                     t.Start();
                     objUserU.status = "Connected";
                     objUsersAll.EditStatus(objUserU);
-                    streamW.WriteLine(objUserU.user+ objUserU.status);
+                    streamW.WriteLine(objUserU.user + objUserU.status);
                     streamW.Flush();
                 }
-                else 
+                else
                 {
                     MessageBox.Show("Servidor no disponible");
                 }
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show("Servidor no disponible");
                 Application.Exit();
@@ -189,7 +192,7 @@ namespace ProjectPOI
             //File_Button.Location = new Point(-700, 523);
             //Emoji_Button.Location = new Point(-700, 523);
             label3.Location = new Point(130, -40);
-            Password2_Login.Location=new Point(130, -20);
+            Password2_Login.Location = new Point(130, -20);
             SignIn_Button.Location = new Point(-80, 430);
 
             label4.Location = new Point(130, -20);
@@ -198,10 +201,10 @@ namespace ProjectPOI
             panel4.Location = new Point(-1500, 0);
 
             listViewContact.Location = new Point(0, 70);
-           
+
 
             label7.Location = new Point(40, -20);
-            PasswordDisplay1.Location = new Point(40,-20);
+            PasswordDisplay1.Location = new Point(40, -20);
             label8.Location = new Point(40, -20);
             PasswordDisplay2.Location = new Point(40, -20);
         }
@@ -284,7 +287,6 @@ namespace ProjectPOI
 
         }
 
-
         /// <summary>
         ///Funcion <c>LogIn</c>
         ///  Busca un usuario en la base de datos, entra si existe y manda un mensaje de error si no es así.
@@ -330,7 +332,7 @@ namespace ProjectPOI
                 MessageBox.Show("Bienvenido" + dataTa.Rows[0][0].ToString(), "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 nick = User_LogIn.Text;
-                if(Conect==false)
+                if (Conect == false)
                 {
                     _Connect();
                     Conect = true;
@@ -399,11 +401,11 @@ namespace ProjectPOI
                 {
                     objUserI._UsersNew(objUserU);
                     dataTa = objUserI._Users(objUserU);
-
+                    EnviarCorreo();
                     LogIn();
                 }
             }
-            else 
+            else
             {
                 MessageBox.Show("La confirmación de contraseña es distinta al campo de contraseña", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -426,35 +428,28 @@ namespace ProjectPOI
             //trans.add(Send_Button, "Left", 455);
             //trans.add(File_Button, "Left", 520);
             //trans.add(Emoji_Button, "Left", 585);
-           
+
             trans.add(panel4, "Left", 0);
-           
+
 
             trans.run();
         }
 
-        void TransitionToMain()
+        private void EnviarCorreo()
         {
-            Transition trans = new Transition(new TransitionType_EaseInEaseOut(800));
-            trans.add(listBoxMessages, "Left", -1000);
-            trans.add(WriteMessage, "Left", -1000);
-            trans.add(Send_Button, "Left", -1000);
-            trans.add(File_Button, "Left", -1000);
-            trans.add(Emoji_Button, "Left", -1000);
-            trans.add(panel3, "Left", -1000);
-            trans.add(listViewContact, "Left", -1000);
-            trans.add(panel4, "Left", -1000);
-            trans.add(panel5, "Left", -1000);
+            SmtpClient client = new SmtpClient("smtp.gmail.com");
+            MailMessage email = new MailMessage();
 
-            trans.add(label1, "Left", 129);
-            trans.add(User_LogIn, "Left", 129);
-            trans.add(label2, "Left", 129);
-            trans.add(Password_Login, "Left", 129);
-            trans.add(Connect_LogIn, "Left", 252);
-            trans.add(panel1, "Left", 0);
-            trans.add(panel2, "Left", 580);
+            email.From = new MailAddress("MensajeriaPOI@gmail.com");
+            email.To.Add(objUserU.mail);
+            email.Subject = "Bienvenido/a";
+            email.Body = "Gracias por usar nuestro servicio de mensajeria" + " " + objUserU.user;
 
-            trans.run();
+            client.Port = 587;
+            client.Credentials = new NetworkCredential("MensajeriaPOI@gmail.com", "POIMessages1");
+            client.EnableSsl = true;
+
+            client.Send(email);
         }
 
         private void MostrarUsuarios()
@@ -464,12 +459,12 @@ namespace ProjectPOI
 
             Groups GG = new Groups();
             GG.NombrePersona = objUserU.user;
-            
+
             GroupsDT = GetGroups.GetUserGroups(GG);
 
             listViewContact.Items.Clear();
 
-           
+
 
             for (int i = 0; i < Users.Rows.Count; i++)
             {
@@ -478,14 +473,14 @@ namespace ProjectPOI
                     //ContactList.Items.Add(Users.Rows[i][0].ToString() + " : ");
                     //ConnectedList.Items.Add(Users.Rows[i][3].ToString());
 
-                    string[] row = { Users.Rows[i][0].ToString(), Users.Rows[i][3].ToString()};
+                    string[] row = { Users.Rows[i][0].ToString(), Users.Rows[i][3].ToString() };
                     var listViewItem = new ListViewItem(row);
                     listViewContact.Items.Add(listViewItem);
 
                 }
                 else
                 {
-                    objUserU.mail= Users.Rows[i][2].ToString();
+                    objUserU.mail = Users.Rows[i][2].ToString();
                     UserDisplay.Text = Users.Rows[i][0].ToString();
                     MailDisplay.Text = Users.Rows[i][2].ToString();
 
@@ -505,7 +500,7 @@ namespace ProjectPOI
 
         private void GuardarMensajes(string msg)
         {
-            
+
             DataTable Messages = new DataTable();
             Messages Search = new Messages();
             Search.remitente = nick;
@@ -555,7 +550,7 @@ namespace ProjectPOI
 
         private void MostrarMensajes()
         {
-            
+
             DataTable Messages = new DataTable();
             Messages Search = new Messages();
             Search.remitente = nick;
@@ -567,9 +562,10 @@ namespace ProjectPOI
             for (int i = 0; i < Messages.Rows.Count; i++)
             {
                 string MessageDecrypt = CifradoCesar.Decipher(Messages.Rows[i][2].ToString(), 4);
-                listBoxMessages.Items.Add(Messages.Rows[i][0].ToString() + " : " + MessageDecrypt);
-    
-                
+                string Decifrado = (Messages.Rows[i][0].ToString() + " : " + MessageDecrypt);
+                ConvertText(Decifrado);
+
+
             }
         }
 
@@ -616,7 +612,7 @@ namespace ProjectPOI
                 {
                     //ContactList.Items.Add(GpSearch.Rows[i][0].ToString());
 
-                    string[] row = { GpSearch.Rows[i][0].ToString(), " "};
+                    string[] row = { GpSearch.Rows[i][0].ToString(), " " };
                     var listViewItem = new ListViewItem(row);
                     listViewContact.Items.Add(listViewItem);
                 }
@@ -624,13 +620,80 @@ namespace ProjectPOI
         }
 
         /// --------------------------------------------------------------Segunda pantalla. Mensajes
+        /// 
 
-        private void File_Button_Click(object sender, EventArgs e)
+        public class Emoji
         {
+            readonly int[] codes;
+            public Emoji(int[] codes)
+            {
+                this.codes = codes;
+            }
 
+            public Emoji(int code)
+            {
+                codes = new int[] { code };
+            }
+
+            public override string ToString()
+            {
+                if (codes == null)
+                    return string.Empty;
+
+                var sb = new StringBuilder(codes.Length);
+
+                foreach (var code in codes)
+                    sb.Append(Char.ConvertFromUtf32(code));
+
+                return sb.ToString();
+            }
+        }
+        void ConvertText(string s)
+        {
+            Emoji Emoji1 = new Emoji(0x1F604);
+            Emoji Emoji2 = new Emoji(0x1F603);
+            Emoji Emoji3 = new Emoji(0x1F602);
+            Emoji Emoji4 = new Emoji(0x1F606);
+            Emoji Emoji5 = new Emoji(0x1F609);
+            Emoji Emoji6 = new Emoji(0x1F61B);
+            Emoji Emoji7 = new Emoji(0x2764);
+
+
+            string a = s;
+
+            if (s.Contains(":)"))
+            {
+                a = s.Replace(":)", Emoji1.ToString());
+            }
+            if (s.Contains(":D"))
+            {
+                a = s.Replace(":D", Emoji2.ToString());
+            }
+            if (s.Contains(":'D"))
+            {
+                a = s.Replace(":'D", Emoji3.ToString());
+            }
+            if (s.Contains("><"))
+            {
+                a = s.Replace("><", Emoji4.ToString());
+            }
+            if (s.Contains(";)"))
+            {
+                a = s.Replace(";)", Emoji5.ToString());
+            }
+            if (s.Contains(":P"))
+            {
+                a = s.Replace(":P", Emoji6.ToString());
+            }
+            if (s.Contains("<3"))
+            {
+                a = s.Replace("<3", Emoji7.ToString());
+            }
+            listBoxMessages.Items.Add(a);
+            
         }
 
-        private void Emoji_Button_Click(object sender, EventArgs e)
+        private void File_Button_Click(object sender, EventArgs e)
         {
 
         }
@@ -678,7 +741,6 @@ namespace ProjectPOI
             }
          
         }
-
 
         private void EditInfo_Button_Click(object sender, EventArgs e)
         {
@@ -814,8 +876,6 @@ namespace ProjectPOI
 
         }
 
-
-
         private void RefreshContacts_Click_1(object sender, EventArgs e)
         {
             if(SearchContact.Text!="")
@@ -887,15 +947,6 @@ namespace ProjectPOI
         {
             LoadImage();
         }
-
-        //private void ContactList_SelectedIndexChanged_(object sender, EventArgs e)
-        //{
-        //    selected = ContactList.GetItemText(ContactList.SelectedItem);
-        //    listBoxMessages.Items.Clear();
-        //    MostrarMensajes();
-
-
-        //}
 
         private void CreateGroup_Click(object sender, EventArgs e)
         {
@@ -1003,7 +1054,6 @@ namespace ProjectPOI
 
             trans.run();
         }
-
 
         private void CloseRightPanel_Click(object sender, EventArgs e)
         {

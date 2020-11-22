@@ -36,6 +36,7 @@ namespace LogIn_SingIn
             cmd.Parameters.AddWithValue("@user", obj.user);
             cmd.Parameters.AddWithValue("@pass", obj.pass);
             cmd.Parameters.AddWithValue("@email", obj.mail);
+            cmd.Parameters.AddWithValue("@status", "Connected");
             SqlDataAdapter dataAd = new SqlDataAdapter(cmd);
             DataTable dataTa = new DataTable();
             dataAd.Fill(dataTa);

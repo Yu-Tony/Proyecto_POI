@@ -50,7 +50,6 @@
             this.LeftPanel = new System.Windows.Forms.Button();
             this.Send_Button = new System.Windows.Forms.Button();
             this.listBoxMessages = new System.Windows.Forms.ListBox();
-            this.Emoji_Button = new System.Windows.Forms.Button();
             this.File_Button = new System.Windows.Forms.Button();
             this.WriteMessage = new System.Windows.Forms.TextBox();
             this.SalirGrupo = new System.Windows.Forms.Button();
@@ -252,7 +251,6 @@
             this.panel4.Controls.Add(this.LeftPanel);
             this.panel4.Controls.Add(this.Send_Button);
             this.panel4.Controls.Add(this.listBoxMessages);
-            this.panel4.Controls.Add(this.Emoji_Button);
             this.panel4.Controls.Add(this.File_Button);
             this.panel4.Controls.Add(this.WriteMessage);
             this.panel4.Location = new System.Drawing.Point(0, 0);
@@ -300,16 +298,6 @@
             this.listBoxMessages.Size = new System.Drawing.Size(626, 494);
             this.listBoxMessages.TabIndex = 33;
             this.listBoxMessages.SelectedIndexChanged += new System.EventHandler(this.listBoxMessages_SelectedIndexChanged);
-            // 
-            // Emoji_Button
-            // 
-            this.Emoji_Button.Location = new System.Drawing.Point(859, 534);
-            this.Emoji_Button.Name = "Emoji_Button";
-            this.Emoji_Button.Size = new System.Drawing.Size(63, 19);
-            this.Emoji_Button.TabIndex = 32;
-            this.Emoji_Button.Text = "Emoji";
-            this.Emoji_Button.UseVisualStyleBackColor = true;
-            this.Emoji_Button.Click += new System.EventHandler(this.Emoji_Button_Click);
             // 
             // File_Button
             // 
@@ -640,7 +628,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.FormClosing += Form1_FormClosing;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -672,7 +659,6 @@
         private System.Windows.Forms.Button Log_In_Chng;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ListBox listBoxMessages;
-        private System.Windows.Forms.Button Emoji_Button;
         private System.Windows.Forms.Button File_Button;
         private System.Windows.Forms.TextBox WriteMessage;
         private System.Windows.Forms.Button Send_Button;
